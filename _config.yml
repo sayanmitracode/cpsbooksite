@@ -19,6 +19,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   A live website for supporting materials for the book Verifying cyberphysical systems by Sayan Mitra.
 baseurl: "/cpsbooksite" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+permalink: /:categories/:year/:month/:day/:title:output_ext
 twitter_username: Mitrasayn
 github_username:  sayanmitracode
 
