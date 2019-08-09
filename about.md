@@ -2,17 +2,9 @@
 layout: page
 title: About
 ---
-Yes yes we can find out more here.
+This web page contains additional supporting material for the book 
+**Verifying cyberphysical systems** written by 
+[Sayan Mitra][sayan-homepage] and to be published by [MIT press][mit-press-homepage].
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+[sayan-homepage]:http://mitras.ece.illinois.edu/
+[mit-press-homepage]:https://mitpress.mit.edu/
