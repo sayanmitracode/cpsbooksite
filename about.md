@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-permalink: /about/
+permalink: {{ site.baseurl }}about/
 ---
 # Start 
 Yes yes we can find out more here.

@@ -1,6 +1,6 @@
 ---
 layout: page
 title: Another
-permalink: /another/
+permalink: {{ site.baseurl }}another/
 ---
 ## This is yet another page.
