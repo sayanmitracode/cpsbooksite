@@ -15,9 +15,9 @@ title: Slides
  * Learning and teaching using this textbook
  -->
    * slides
-
 2. ### Modeling computation
   * slides [pptx](Slides/ModelingComputation.pptx) [pdf](Slides/ModelingComputation.pdf)
+  * code
 <!--
  {2.1}Quick introduction to automata}{15}{section.2.1}
  {subsection}{\numberline {2.1.1}Example: JK flip flop}{15}{subsection.2.1.1}
