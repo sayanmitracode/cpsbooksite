@@ -4,8 +4,7 @@ title: Slides
 ---
 # Chapters
 
-
-### 1. Introduction
+1. ### Introduction
 <!--
  * What is this book about? The verification problem 
  * Testing and verification for establishing system requirements
@@ -15,8 +14,10 @@ title: Slides
  * Road map
  * Learning and teaching using this textbook
  -->
+   * slides
 
-### 2.  Modeling computation
+2. ### Modeling computation
+  * slides [pptx](Slides/ModelingComputation.pptx) [pdf](Slides/ModelingComputation.pdf)
 <!--
  {2.1}Quick introduction to automata}{15}{section.2.1}
  {subsection}{\numberline {2.1.1}Example: JK flip flop}{15}{subsection.2.1.1}
@@ -38,7 +39,7 @@ title: Slides
  {2.6}Example: Reasoning about impossibility}{24}{section.2.6}
  {2.7}Problems}{25}{section.2.7}
  -->
-### 3. Modeling physics
+3. ### Modeling physics
 <!--
  {paragraph}{Overview}{27}{section*.22}
  {3.1}Quick introduction to differential equations\/}{27}{section.3.1}
@@ -63,7 +64,7 @@ title: Slides
  {paragraph}{Summary and outlook.}{44}{section*.23}
  {3.10}Problems}{44}{section.3.10}
  -->
-### 4. Modeling cyberphysical systems
+4. ### Modeling cyberphysical systems
 <!--
  {paragraph}{Overview}{47}{section*.24}
  {4.1}Quick introduction to hybrid automata}{47}{section.4.1}
@@ -88,7 +89,7 @@ title: Slides
  {4.6}Example: Small aircraft traffic management system}{63}{section.4.6}
  {4.7}Problems}{65}{section.4.7}
  -->
-### 5. Composing models
+5. ### Composing models
 <!-- 
  {paragraph}{Overview}{69}{section*.26}
  {5.1}Composing automata}{69}{section.5.1}
@@ -110,7 +111,7 @@ title: Slides
  {5.8}Example: Emergency braking on highways}{83}{section.5.8}
  {5.9}Problems}{85}{section.5.9}
  -->
-### 6. Specifying requirements
+6. ### Specifying requirements
 <!-- 
  {paragraph}{Overview}{87}{section*.28}
  {6.1}Requirements analysis}{87}{section.6.1}
@@ -139,7 +140,7 @@ title: Slides
  {subsection}{\numberline {6.6.3}Dense time, signal, and stochastic temporal logics}{103}{subsection.6.6.3}
  {6.7}Problems}{104}{section.6.7}
  -->
-### 7. Verifying invariants
+7. ### Verifying invariants
 <!-- 
  {7.1}Quick introduction to proving invariants}{105}{section.7.1}
  {paragraph}{Floyd-Hoare logic}{107}{section*.34}
@@ -161,7 +162,7 @@ title: Slides
  {paragraph}{Learning invariants by using execution data}{123}{section*.36}
  {7.7}Problems}{123}{section.7.7}
  -->
-### 8. Abstractions and compositional reasoning
+8. ### Abstractions and compositional reasoning
 <!--
  {8.1}Quick introduction to abstractions: Timing abstraction}{125}{section.8.1}
  {8.2}Abstraction definitions}{128}{section.8.2}
@@ -180,7 +181,7 @@ title: Slides
  {paragraph}{Refinement strategy}{141}{section*.41}
  {8.8}Problems}{141}{section.8.8}
  -->
-### 9. Reachability analysis 
+9. ### Reachability analysis 
 <!--
  {9.1}Quick introduction to reachability analysis}{143}{section.9.1}
  {9.2}Finite automata}{144}{section.9.2}
@@ -214,7 +215,7 @@ title: Slides
  {paragraph}{Summary}{171}{section*.51}
  {9.8}Problems}{171}{section.9.8}
  -->
-### 10. Progress analysis
+10. ### Progress analysis
  <!-- 
  {paragraph}{Overview}{173}{section*.52}
  {10.1}Quick introduction to progress}{173}{section.10.1}
@@ -235,7 +236,7 @@ title: Slides
  {subsection}{\numberline {10.6.3}Stability under slow switching: average dwell time}{188}{subsection.10.6.3}
  {10.7}Problems}{190}{section.10.7}
  -->
-### 11. Data-driven verification
+11. ### Data-driven verification
 <!-- 
  {11.1}Quick introduction to data-driven safety verification}{191}{section.11.1}
  {subsection}{\numberline {11.1.1}Discrepancy functions}{192}{subsection.11.1.1}
@@ -267,7 +268,6 @@ title: Slides
  {11.9}Problems}{215}{section.11.9}
  -->
 # Appendices
-
-### A.1 Linear algebra and real analysis
-### A.2 Computability and complexity
-### A.3 Specification language reference
+  * ### A Linear algebra and real analysis
+  * ### B Computability and complexity
+  * ### C Specification language reference
