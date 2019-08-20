@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Slides
+title: Slides and Code
 ---
 # Chapters
 

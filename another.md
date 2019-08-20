@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Another
+title: Extra problems
 ---
 
-# Another
+# Extra problems
