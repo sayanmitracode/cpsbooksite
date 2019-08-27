@@ -2,19 +2,14 @@
 layout: page
 title: Slides and Code
 ---
+**Verifying cyberphysical systems**, by _Sayan Mitra_. 
+To be published by _MIT Press_. 
+
 # Chapters
 
 1. ### Introduction
-<!--
- * What is this book about? The verification problem 
- * Testing and verification for establishing system requirements
- * From systems to models of systems
- * Verification ecosystem
- * Challenges and state of the art
- * Road map
- * Learning and teaching using this textbook
- -->
-   * slides
+  * slides [pptx](Slides/introduction.pptx) 
+
 2. ### Modeling computation
   * slides [pptx](Slides/ModelingComputation.pptx) [pdf](Slides/ModelingComputation.pdf)
   * code
@@ -141,6 +136,7 @@ title: Slides and Code
  {6.7}Problems}{104}{section.6.7}
  -->
 7. ### Verifying invariants
+  * Satisfiability and satisfiability modulo theories: slides [pptx](Slides/sat-smt.pptx)
 <!-- 
  {7.1}Quick introduction to proving invariants}{105}{section.7.1}
  {paragraph}{Floyd-Hoare logic}{107}{section*.34}
