@@ -8,7 +8,7 @@ To be published by _MIT Press_.
 # Chapters
 
 1. ### Introduction
-  * slides [pptx](Slides/introduction-cps.pptx) 
+  * slides [pptx](Slides/introduction-cps2.pptx) 
 
 2. ### Modeling computation
   * slides [pptx](Slides/ModelingComputation.pptx) [pdf](Slides/ModelingComputation.pdf)
