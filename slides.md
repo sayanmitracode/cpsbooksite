@@ -12,7 +12,7 @@ To be published by _MIT Press_.
 
 2. ### Modeling computation
   * slides [pptx](Slides/ModelingComputation.pptx) [pdf](Slides/ModelingComputation.pdf)
-  * code
+  * code [ipynb](https://gitlab.engr.illinois.edu/mitras/cps_bookcode/tree/master/Chapter%202/Notebook)
 <!--
  {2.1}Quick introduction to automata}{15}{section.2.1}
  {subsection}{\numberline {2.1.1}Example: JK flip flop}{15}{subsection.2.1.1}
