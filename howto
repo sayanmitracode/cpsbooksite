@@ -1,0 +1,13 @@
+git checkout -b gh-pages
+
+git status
+
+# regularly
+git add .
+git commit -m "whatever"
+# only once
+git remote add origin <url>
+# always
+git push origin gh-pages
+
+
