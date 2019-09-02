@@ -1,0 +1,222 @@
+\documentclass[11pt]{article}
+
+% This is a package for drawing figures
+% it is a part of standard latex 2e distribution
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{fullpage}
+
+
+\usepackage{palatino}
+\RequirePackage{ifthen}
+\usepackage{latexsym}
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{amssymb}
+\RequirePackage{xspace}
+\RequirePackage{graphics}
+\usepackage{xcolor}
+
+
+
+
+\RequirePackage{textcomp}
+\usepackage{keyval}
+%\usepackage{listings}
+\usepackage{xspace}
+\usepackage{mathrsfs,paralist, amsmath,amssymb,url,listings,mathrsfs}
+%\usepackage{pvs}
+%\usepackage{supertabular,alltt,latexsym}
+%\usepackage{multicol,multirow,epsfig}
+%\usepackage[dvips, usenames]{color}
+\usepackage{framed}
+\usepackage{lipsum}
+%\usepackage[dvipsnames]{color}
+
+% copyright notice
+
+
+\definecolor{reddish}{rgb}{1,.8,0.8}
+\definecolor{blueish}{rgb}{0.8,.8,1}
+\definecolor{greenish}{rgb}{.8,1,0.8}
+\definecolor{yellowish}{rgb}{1,1,.20}
+
+
+\usepackage[pdftex]{hyperref}
+\hypersetup{
+  pdftitle={Lecture notes for Modeling and Verification of Real-time and Hybrid Systems},
+  pdfauthor={Sayan Mitra},
+  colorlinks=true,
+  citecolor={blue},
+  linkcolor = {blue},
+  pagecolor={blue},
+  backref={true},
+  bookmarks=true,
+  bookmarksopen=false,
+  bookmarksnumbered=true
+}
+
+%\newcommand{\remove}[1]{}
+\newcommand{\nicole}[1]{\textcolor{red}{#1}}
+
+\input{prelude1}
+
+
+\newcommand{\handout}[6]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      \hbox to 5.78in { {\bf ECE/CS 584: Embedded and cyberphysical system  verification } \hfill #2 }
+      \vspace{4mm}
+      \hbox to 5.78in { {\Large \hfill #5  \hfill} }
+      \vspace{2mm}
+       \hbox to 5.78in { {\Large \hfill #6  \hfill} }
+      \vspace{2mm}
+      \hbox to 5.78in { {\em #3 \hfill #4} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\smallheader}[5]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      \hbox to 5.78in { {\bf Verifying cyberphysical systems} \hfill #2 }
+      \vspace{2mm}
+      \hbox to 5.78in { {\em #3 \hfill #4} }
+      \vspace{2mm}
+      \hbox to 5.78in { {\em \hfill #5} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\lecture}[4]{\handout{#1}{#2}{#3}{Scribe: #4}{Lecture #1}}
+
+\newcommand{\homework}[2]{\smallheader{#1}{Fall 2019}{Homework #1}\vspace{5mm} 
+	{#2}
+	}
+	
+\newcommand{\solution}[2]{\smallheader{#1}{Fall 2017}{Solutions for Homework #1}{#2}}
+
+
+\newcommand{\interestingfact}[1]{
+	\noindent
+	\begin{center}
+	\colorbox{yellowish}{
+	\parbox{11.5cm}{{\bf Factoid.} #1}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+%\definecolor{MyGray}{rgb}{0.96,0.97,0.98}
+\makeatletter\newenvironment{color1box}{%
+   \begin{lrbox}{\@tempboxa}\begin{minipage}{\columnwidth}}{\end{minipage}\end{lrbox}%
+   \colorbox{reddish}{\usebox{\@tempboxa}}
+}\makeatother
+
+
+\makeatletter\newenvironment{color3box}{%
+   \begin{lrbox}{\@tempboxa}\begin{minipage}{\columnwidth}}{\end{minipage}\end{lrbox}%
+   \colorbox{blueish}{\usebox{\@tempboxa}}
+}\makeatother
+
+% 1-inch margins, from fullpage.sty by H.Partl, Version 2, Dec. 15, 1988.
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 8.9in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+%\renewcommand{\baselinestretch}{1.25}
+
+\begin{document}
+
+
+\smallheader{1 on Modeling computation and invariance--- Due on September $17^{th}$}{Fall 2019}{Sayan Mitra}{Extra problems for Chapter 2: Modeling computation}{Last updated  September 2, 2019}
+
+\paragraph{Problem. Bidirectional array.}
+Model the following token-based mutual exclusion algorithm that works on a {\em bidirectional array\/}.  There are $N$ processes $\{0,\ldots, N-1\}$ in an array. Each process $i$, has a single variable $s[i]$ that takes values in the set $\{0,1,2,3\}$ independent of the size of the array. The two processes $0$ and $N-1$ behave differently from the rest, they can take two values each $s[0]$ can take values $\{1,3\}$ and $s[N-1]$ can take values $\{0,2\}$. Let $\mathit{Nbrs}(i)$ be the set of neighboring  processes for process $i$.  
+\begin{enumerate}
+	\item Program for processes, $i$, $i=0$ or $i = N-1$: \\ 
+	if $\exists \ j \in \mathit{Nbrs}(i)$:$s[j] = s[i] + 1 \mod 4$ then $s[i] = s[i] + 2 \mod 4$
+	\item Program for processes, $i$, $0<i,N-1$: \\ 
+	if $\exists \ j \in \mathit{Nbrs}(i)$:$s[j] = s[i] + 1 \mod 4$ then $s[i] = s[i] + 1 \mod 4$
+\end{enumerate} 
+In this protocol, process $i$ {\em has token\/} iff
+\[
+\exists j \in \mathit{Nbrs}(i):s[j] = s[i] + 1 \mod 4.
+\] 
+
+\begin{enumerate}[(a)]
+\item Write the model of the bidirectional array system with $N$ processes using the language we saw in class. 
+\item Write an execution of the algorithm that starts from a state with a single token. Mark the process with the token.
+\item Write an execution (of length at least 6) that starts from a state with multiple tokens.
+\item Prove the invariant ``system has a single token'' using the inductive invariance theorem. 
+\end{enumerate}
+
+
+\paragraph{Problem. LCR Leader election.}
+In this problem, you will create a model of a leader election algorithm in a unidirectional ring~\cite{lynch1996a}. Here is the informal description of the protocol:
+
+Each process sends its identifier to its successor around the ring. When a process receives an incoming identifier, it compares that identifier to its own. If the incoming identifier is greater than its own, it keeps passing the identifier; if it is less than its own, it discards the incoming identifier; if it is equal to its own the process declares itself as the leader. 
+
+\begin{enumerate}[(a)]
+\item Write the model of the system with $n$ processes in the ring using the language we saw in class. To get you started, the set of variables is: 
+\begin{itemize}
+\item $\mathit{send}$: The identifier to send or {\em null\/},
+\item $\mathit{status}$: Takes values in $\{ \mathit{unknown},\mathit{leader}\}$ to indicate that the leader has been elected or not. 
+\end{itemize}
+
+\item Write an execution of the system in which status of at least one process is eventually set to $\mathit{leader\/}$. 
+\item Write two candidate invariants. 
+\end{enumerate}
+
+\paragraph{Problem 3. Impossibility of election.}
+A {\em symmetric function\/} $f:S^k \rightarrow S$ has the property that for all $s_1,s_2\in S^k$, if $s_1$ is a permutation of $s_2$ then $f(s_1) = f(s_2)$. That is, for $k=3$, $f(\langle 1,2,3 \rangle) = f(\langle 2,3,1\rangle) = f(\langle 3,1,2\rangle)$, etc.
+
+Consider a synchronous algorithm $\auto{SymGk}$ running on a graph $G$ with {\em indegree\/} $k$. That is, each process $P_j$ reads the states of exactly $k$ other processes. In this algorithm. $\auto{SymGk}$, every node updates its state $x_i$ according to some symmetric function $f:S^k \rightarrow S$, that is, 
+\[
+x[i] := f(\langle x[j] \ | \ (j,i) \in G)
+\]
+Show that it is impossible for $\auto{SymGk}$  to elect a leader if initially every process has the same value of $x[i]$. {\em [Hint: State an invariant and prove it by induction on rounds.]}
+
+
+
+\paragraph{Coding problem. Invariance with Z3.} 
+Use the Z3 SMT solver to encode and check that for the Dijkstra's token ring mutual exclusion algorithm ($\auto{DijkstraTR}$ of Chapter~2) the predicate $\phi_{\mathit{legal}}$ is an inductive invariant. 
+
+First install z3 in your computer. This is a very quick process. On the MacOS \texttt{pip install z3-solver} does it in less than a minute. For Windows and Linux you can get it from: \\  \href{https://github.com/Z3Prover/z3}{https://github.com/Z3Prover/z3}. There is a lot of help available online for installation related issues. 
+
+Next, download the file \texttt{DijkstraTRind.py} given for this homework and read it carefully. There are several function given and you have to complete several other functions. The documentation given with the program, the lecture slides, and the discussions in the book chapter 2 and 7 should be adequate for you to complete this problem. Here are some additional notes. 
+
+\begin{itemize}
+\item \texttt{has\_token(x\_list, j)}: Generates a Z3 Boolean expression (predicate) that represents whether process P\_j holds the token. Here  \texttt{x\_list} is a list of Z3 variables, for example, \texttt{[x[0], x[1], x[2], x[3]]}, and  \texttt{j} is the index of process P\_j.
+\item \texttt{legal\_config(x\_list)}: Generates a Z3 Boolean expression that represents whether the system is in a legal configuration. This is the implementation of $\phi_{\mathit{legal}}$. This function is given to and {\bf you do not have to change it\/}.
+%
+\item \texttt{transition\_relation(old\_x\_list, new\_x\_list)}: Generates a Z3 Boolean expression representing transition from \texttt{old\_x\_list} to \texttt{new\_x\_list}.
+\item \texttt{prove(conjecture)}: Checks whether the Boolean predicate \texttt{conjecture} is valid using the Z3 solver to check the {\em unsatisfiability\/} of the negation of \texttt{conjecture}. {\bf You do not have to change this.\/}
+\end{itemize}
+
+Run your program with \texttt{python DijkstraTRind.py}. If the functions are written correctly, then validity of the base case and the induction case imply (by the induction invariance Theorem) that \texttt{legal\_config} is indeed an invariant.
+
+\paragraph{Problem. Traffic light.} 
+ Model a traffic light which follows these rules. It can display three colors: green, amber, and red. It cycles through these colors in this order, pausing some number of ticks in each color. There is a button that pedestrians can press to cross the road. If the color is green when the button is pressed then within 5 ticks it becomes amber. Otherwise, pressing the button does not change the behavior of the light.
+
+\paragraph{Coding problem. Invariant verification.}
+ Verify inductive invariants of other distributed algorithms, such as the bidirectional array in Problem~1, following the pattern of Problem 4. Several interesting examples appear in Chapter~17 of~\cite{Ghosh:2014:DSA}.
+
+
+\bibliography{sayan1}
+\bibliographystyle{plain}
+\end{document}
