@@ -12,7 +12,7 @@ To be published by _MIT Press_.
 
 2. ### Modeling computation
   * slides [pptx](Slides/ModelingComputation.pptx) [pdf](Slides/ModelingComputation.pdf)
-  * code [ipynb](https://gitlab.engr.illinois.edu/mitras/cps_bookcode/tree/master/Chapter%202/Notebook)
+  * code [ipynb](https://gitlab.engr.illinois.edu/mitras/cps_bookcode/blob/master/Chapter%202/Notebook/Chapter2.ipynb)
 <!--
  {2.1}Quick introduction to automata}{15}{section.2.1}
  {subsection}{\numberline {2.1.1}Example: JK flip flop}{15}{subsection.2.1.1}
@@ -136,7 +136,10 @@ To be published by _MIT Press_.
  {6.7}Problems}{104}{section.6.7}
  -->
 7. ### Verifying invariants
-  * Satisfiability and satisfiability modulo theories: slides [pptx](Slides/sat-smt.pptx)
+  * Satisfiability: slides [pptx](Slides/sat-smt.pptx) [pdf](Slides/sat-smt.pdf)
+  * Satisfiability modulo theories: slides [pptx](Slides/smt.pptx) [pdf](Slides/smt.pdf)
+  * Notebook [Quick Z3 SMT tutorial](Code/Chapter7/Z3 Quick SMT solver tutorial.ipynb)
+
 <!-- 
  {7.1}Quick introduction to proving invariants}{105}{section.7.1}
  {paragraph}{Floyd-Hoare logic}{107}{section*.34}
