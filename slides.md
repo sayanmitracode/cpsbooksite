@@ -35,6 +35,8 @@ To be published by _MIT Press_.
  {2.7}Problems}{25}{section.2.7}
  -->
 3. ### Modeling physics
+  * slides [pptx](Slides/ModelingPhysics.pptx) [pdf](Slides/ModelingPhysics.pdf)
+
 <!--
  {paragraph}{Overview}{27}{section*.22}
  {3.1}Quick introduction to differential equations\/}{27}{section.3.1}
