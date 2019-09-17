@@ -62,8 +62,7 @@ To be published by _MIT Press_.
  {3.10}Problems}{44}{section.3.10}
  -->
 4. ### Modeling cyberphysical systems
-  * slides [pptx](Slides/ModelingCyberphysicalSysems.pptx) [pdf](Slides/ModelingCyberphysicalSysems.pdf)
-
+  * slides [pptx](Slides/ModelingCyberphysicalSystems.pptx) [pdf](Slides/ModelingCyberphysicalSystems.pdf)
 <!--
  {paragraph}{Overview}{47}{section*.24}
  {4.1}Quick introduction to hybrid automata}{47}{section.4.1}
