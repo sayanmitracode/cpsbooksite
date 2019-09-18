@@ -36,7 +36,7 @@ To be published by _MIT Press_.
  -->
 3. ### Modeling physics
   * slides [pptx](Slides/ModelingPhysics.pptx) [pdf](Slides/ModelingPhysics.pdf)
-
+  * code for linear model simulation [py](https://github.com/sayanmitracode/cpsbooksite/tree/gh-pages/Code/Chapter3)
 <!--
  {paragraph}{Overview}{27}{section*.22}
  {3.1}Quick introduction to differential equations\/}{27}{section.3.1}
