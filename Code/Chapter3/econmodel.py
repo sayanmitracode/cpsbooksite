@@ -84,31 +84,48 @@ class ODESolver:
         StateSeq = odeint(self.f, InitialState, TimeSeq)
         return StateSeq
     
-    #def simulateSet(self,)
-
-    def plotTraj(self,TimeSeq,StateSeq, dim1, dim2):
+    def plotPhase(self,TimeSeq,StateSeq, dim1, dim2,LegendSeq=[]):
         '''plot phase portrait of dim1 vs dim2'''
         pl.plot(StateSeq[:,dim1],StateSeq[:,dim2],color='.2',linewidth='2')
+        pl.legend(LegendSeq, loc='upper right', fontsize='x-large')
+
+    
+    def plotTraj(self,TimeSeq,StateSeq, LegendSeq=[]):
+        '''plot trajectory vs time
+            Input: Vector of time sequence
+            and Vector of state sequence
+            Vector of strings used as legend; defaults to empty
+        '''
+        pl.plot(TimeSeq, StateSeq,linewidth='2')
+        pl.legend(LegendSeq, loc='upper right', fontsize='x-large')
 
 
-## model parameters
+
+## Define model parameters
 alpha = 3
 beta = 1.5
 k = 0.1
 g0 = 3
 min = [-5,-5]
 max = [5,5]
-model = ODE(alpha,beta,k,g0,min,max)
-model.vectorfield(20)
 
+# Create model
+model = ODE(alpha,beta,k,g0,min,max)
+
+# Create solver for model
 solver = ODESolver(model)
 
-print(model.alpha)
-print(model.f([1,2],0))
+# Create time sequence
 tseq = np.arange(0.0, 40, 0.1)
+
+# Find solution for time sequence
 sseq = solver.simulate([2,1],tseq)
-solver.plotTraj(tseq,sseq,0,1)
-sseq = solver.simulate([-3.1,1.5],tseq)
-solver.plotTraj(tseq,sseq,0,1)
+
+# Time plot
+solver.plotTraj(tseq,sseq,('income ($x$)', 'spending ($y$)', 'Lyapunov function ($V$)'))
+
+# Uncomment the lines below for Phase plot
+#solver.plotPhase(tseq,sseq,0,1,('income ($x$) vs spending ($y$)',))
+#model.vectorfield(20)
 
 pl.show()
