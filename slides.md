@@ -142,6 +142,8 @@ To be published by _MIT Press_.
   * Satisfiability: slides [pptx](Slides/sat-smt.pptx) [pdf](Slides/sat-smt.pdf)
   * Satisfiability modulo theories: slides [pptx](Slides/smt.pptx) [pdf](Slides/smt.pdf)
   * Notebook [Quick Z3 SMT tutorial](Code/Chapter7/Z3 Quick SMT solver tutorial.ipynb)
+  * Proving invariants: slides [pptx](Slides/CPSInvatiants.pptx) [pdf](Slides/CPSInvatiants.pdf)
+
 
 <!-- 
  {7.1}Quick introduction to proving invariants}{105}{section.7.1}
