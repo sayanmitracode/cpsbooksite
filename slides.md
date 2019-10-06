@@ -19,6 +19,7 @@ To be published by _MIT Press_.
   * slides [pptx](Slides/ModelingCyberphysicalSystems.pptx) [pdf](Slides/ModelingCyberphysicalSystems.pdf)
 5. ### Composing models
 6. ### Specifying requirements
+  * Computational tree logic (CTL) and CTL model checking: slides [pptx](Slides/CTLModelChecking.pptx) [pdf](Slides/CTLModelChecking.pdf)
 7. ### Verifying invariants
   * Satisfiability: slides [pptx](Slides/sat-smt.pptx) [pdf](Slides/sat-smt.pdf)
   * Satisfiability modulo theories: slides [pptx](Slides/smt.pptx) [pdf](Slides/smt.pdf)
