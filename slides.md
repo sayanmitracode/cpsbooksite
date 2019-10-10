@@ -18,6 +18,7 @@ To be published by _MIT Press_.
 4. ### Modeling cyberphysical systems
   * slides [pptx](Slides/ModelingCyberphysicalSystems.pptx) [pdf](Slides/ModelingCyberphysicalSystems.pdf)
 5. ### Composing models
+  * slides [pptx](Slides/Composition.pptx) [pdf](Slides/Composition.pdf)
 6. ### Specifying requirements
   * Computational tree logic (CTL) and CTL model checking: slides [pptx](Slides/CTLModelChecking.pptx) [pdf](Slides/CTLModelChecking.pdf)
 7. ### Verifying invariants
