@@ -28,7 +28,7 @@ To be published by _MIT Press_.
   * Proving invariants: slides [pptx](Slides/CPSInvariants.pptx) [pdf](Slides/CPSInvariants.pdf)
 8. ### Abstractions and compositional reasoning
 9. ### Reachability analysis 
-  * Timed automata: slides [pptx](Slides/ReachabilityTimedAutomaton.pptx) [pdf](Slides/ReachabilityTimedAutomaton.pdf)
+  * Timed automata: slides [pptx](Slides/ReachabilityTimedAutomata.pptx) [pdf](Slides/ReachabilityTimedAutomata.pdf)
 10. ### Progress analysis
 11. ### Data-driven verification
 # Appendices
