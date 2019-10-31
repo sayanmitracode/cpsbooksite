@@ -29,6 +29,8 @@ To be published by _MIT Press_.
 8. ### Abstractions and compositional reasoning
 9. ### Reachability analysis 
   * Timed automata: slides [pptx](Slides/ReachabilityTimedAutomata.pptx) [pdf](Slides/ReachabilityTimedAutomata.pdf)
+  * Undecidability problem for hybrid automata: slides [pptx](Slides/UndecidabilityRHA.pptx) [pdf](Slides/UndecidabilityRHA.pdf)
+
 10. ### Progress analysis
 11. ### Data-driven verification
 # Appendices
