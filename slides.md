@@ -14,7 +14,8 @@ To be published by _MIT Press_.
   * code [ipynb](https://gitlab.engr.illinois.edu/mitras/cps_bookcode/blob/master/Chapter%202/Notebook/Chapter2.ipynb)
 3. ### Modeling physics
   * slides [pptx](Slides/ModelingPhysics.pptx) [pdf](Slides/ModelingPhysics.pdf)
-  * code for linear model simulation [py](https://github.com/sayanmitracode/cpsbooksite/tree/gh-pages/Code/Chapter3)
+  * code for simple economy model  [py](https://github.com/sayanmitracode/cpsbooksite/blob/gh-pages/Code/Chapter3/econmodel.py)
+  * code for SIR epidemic model [py](https://github.com/sayanmitracode/cpsbooksite/blob/gh-pages/Code/Chapter3/sir-basic.py)
 4. ### Modeling cyberphysical systems
   * slides [pptx](Slides/ModelingCyberphysicalSystems.pptx) [pdf](Slides/ModelingCyberphysicalSystems.pdf)
 5. ### Composing models
