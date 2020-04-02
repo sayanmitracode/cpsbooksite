@@ -106,7 +106,7 @@ class ODESolver:
 
 
 ## Define model parameters
-beta = 0.23
+beta = 0.33
 gamma = 0.17
 ''' values from https://towardsdatascience.com/infection-modeling-part-1-87e74645568a'''
 N = 100 
@@ -122,7 +122,7 @@ model = ODE(beta,gamma,N,g0,min,max)
 solver = ODESolver(model)
 
 # Create time sequence
-tseq = np.arange(0.0, 400, 0.01)
+tseq = np.arange(0.0, 100, 0.01)
 
 # Find solution for time sequence
 sseq = solver.simulate([(1-I0)*N,I0*N,0],tseq)
