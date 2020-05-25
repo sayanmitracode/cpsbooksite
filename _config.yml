@@ -13,10 +13,10 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: verifying cyberphysical systems
+title: verifying cyber-physical systems
 email: sayan.mitra@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  A site for the book Verifying cyberphysical systems by Sayan Mitra.
+  A site for the book Verifying cyber-physical systems by Sayan Mitra.
 baseurl: "/cpsbooksite" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 permalink: /:categories/:year/:month/:day/:title:output_ext
