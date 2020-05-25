@@ -10,4 +10,5 @@ git remote add origin <url>
 # always
 git push origin gh-pages
 
-
+# up server
+bundle exec jekyll serve

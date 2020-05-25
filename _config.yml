@@ -28,7 +28,7 @@ markdown: kramdown
 theme: jekyll-swiss
 #minimal-mistakes-jekyll 
 #minima
-theme_color: white
+theme_color: red
 plugins:
   - jekyll-feed
   - jekyll-include-cache
