@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "Book published"
+date:   2021-02-16 00:00:00 -0500
+categories: site update
+---
+The book is now [published](https://mitpress.mit.edu/books/verifying-cyber-physical-systems)! Available from [Amazon](https://tinyurl.com/cpsbookmitra), [Barnes and Noble](https://www.barnesandnoble.com/w/verifying-cyber-physical-systems-sayan-mitra/1137077478?ean=9780262044806), and [Penguin](https://www.penguinrandomhouse.com/books/669466/verifying-cyber-physical-systems-by-sayan-mitra/).
+
