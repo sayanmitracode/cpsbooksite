@@ -27,16 +27,16 @@ class ODE:
     """A simple class defining the simple economy model
     """
     
-    def __init__(self,alphaval,betaval,kval,g0val,min,max):
+    def __init__(self,a11,a12,a21,a22,min,max):
         ''' Initializes the model parameters
         min: 2 vector defining lower bound of x and y
         max: 2 vector defning upper bound of x and y
         '''
         self.dimension = 2
-        self.alpha = alphaval
-        self.beta = betaval
-        self.k = kval
-        self.g0 = g0val
+        self.a11 = a11
+        self.a12 = a12
+        self.a21 = a21
+        self.a22 = a22        
         ''' bounds for simulation and plotting'''
         self.range = hr.Hyperrect(min,max)
     
@@ -54,8 +54,8 @@ class ODE:
         x2 = x[1]  
         
         ## Dynamics shifted to equilibrium for phase plot
-        xd[0] = 1*x1 - self.alpha *x2
-        xd[1] = self.beta*(1-k)*x1 - self.beta*x2  
+        xd[0] = self.a11*x1 +  self.a12*x2
+        xd[1] = self.a21*x1 + self.a22*x2  
         return xd   
 
     def vectorfield(self, gridsize):
@@ -102,15 +102,15 @@ class ODESolver:
 
 
 ## Define model parameters
-alpha = 3
-beta = 1
-k = 0
-g0 = 1
+a11 = -1/2
+a12 = 0
+a21 = 0
+a22 = -2
 min = [-5,-5]
 max = [5,5]
 
 # Create model
-model = ODE(alpha,beta,k,g0,min,max)
+model = ODE(a11,a12,a21,a22,min,max)
 
 # Create solver for model
 solver = ODESolver(model)
@@ -129,6 +129,6 @@ solver.plotPhase(tseq,sseq,0,1,('income ($x$) vs spending ($y$)',))
 model.vectorfield(20)
 
 print("Eighenvalues are:")
-a = np.array([[1, 1],[-3, -1]])
-print(np.linalg.eigvalsh(a))
+a = np.array([[a11, a21],[a12, a22]])
+print(np.linalg.eigvals(a))
 pl.show()

@@ -2,8 +2,8 @@
 layout: page
 title: Slides and Code
 ---
-**Verifying cyberphysical systems**, by _Sayan Mitra_. 
-To be published by _MIT Press_. 
+**Verifying cyberphysical systems**, by _Sayan Mitra_. published by
+_MIT Press_, February 2021. 
 
 # Chapters
 
