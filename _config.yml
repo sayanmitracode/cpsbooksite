@@ -26,7 +26,7 @@ github_username:  sayanmitracode
 # Build settings
 markdown: kramdown
 theme: jekyll-swiss
-header:images/CPSbookheader.jpg
+header: images/CPSbookheader.jpg
 #minimal-mistakes-jekyll 
 #minima
 theme_color: black
