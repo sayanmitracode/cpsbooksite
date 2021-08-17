@@ -41,8 +41,14 @@ Learn more, read the book.
 }
 ```
 
+**Contact**
+- Email: mitras at illinois dot edu
+- Twitter: @Mitrasayn
+
 [sayan-homepage]:http://mitras.ece.illinois.edu/
 [mit-press-homepage]:https://mitpress.mit.edu/books/verifying-cyber-physical-systems
 [amazon-bookpage]:https://tinyurl.com/cpsbookmitra
 [bn-page]:https://www.barnesandnoble.com/w/verifying-cyber-physical-systems-sayan-mitra/1137077478?ean=9780262044806
 [pr-page]:https://www.penguinrandomhouse.com/books/669466/verifying-cyber-physical-systems-by-sayan-mitra/9780262044806/
+
+
