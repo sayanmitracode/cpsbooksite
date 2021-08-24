@@ -24,6 +24,10 @@ The book available from [Amazon][amazon-bookpage], [Barnes and Noble][bn-page], 
 
 <br>
 
+"I found this to be a very thorough introduction to techniques for the specification, modeling, and formal verification of complex cyber-physical systems. The manner in which the material is presented is outstanding: rigorous, yet comprehensible thanks to the extensive use of illustrative examples. Designed as a complete textbook, but I found it to also be suitable for reading up on individual topics. Highly recommended for practitioners, students, and researchers in CPS."
+
+<h5>Sanjoy Baruah, Hugo F. and Ina Champ Urbauer Professor of Computer Science and Engineering at Washington University in St. Louis</h5>
+
 These pages contain lecture slides in editable powerpont format as well as pdf, extra problems, and code for demonstrations and programming assingments.
 
 Learn more, read the book.

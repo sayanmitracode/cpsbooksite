@@ -8,9 +8,11 @@ _MIT Press_, February 2021.
 # Chapters
 
 1. ### Introduction
-  * slides [pptx](Slides/Introduction-cps.pptx) [pdf](Slides/Introduction-cps.pdf)
+  * slides 2021 [pptx](Slides/Introduction-cps21.pptx) [pdf](Slides/Introduction-cps21.pdf)
+  * slides 2019 [pptx](Slides/Introduction-cps.pptx) [pdf](Slides/Introduction-cps.pdf)
 2. ### Modeling computation
-  * slides [pptx](Slides/ModelingComputation.pptx) [pdf](Slides/ModelingComputation.pdf)
+  * pre-lecture notes 2021 [note](Notes/ModelingComputationUnfilled.note) [pdf](Notes/ModelingComputationUnfilled.pdf) 
+  * slides 2019 [pptx](Slides/ModelingComputation.pptx) [pdf](Slides/ModelingComputation.pdf)
   * code [ipynb](https://gitlab.engr.illinois.edu/mitras/cps_bookcode/blob/master/Chapter%202/Notebook/Chapter2.ipynb)
 3. ### Modeling physics
   * slides [pptx](Slides/ModelingPhysics.pptx) [pdf](Slides/ModelingPhysics.pdf)

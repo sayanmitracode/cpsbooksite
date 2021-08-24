@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "Sevaral updates"
+date:   2021-08-23 00:00:00 -0500
+categories: site update
+---
+The kindle version of the book is now available from [amazon]()! Available from [Amazon](https://tinyurl.com/cpsbookindle). This site is also updated with links to [other courses](othercourses.html) using this book, and [handwritten lecture notes](slides.html). 
+
