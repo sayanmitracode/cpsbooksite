@@ -12,6 +12,7 @@ _MIT Press_, February 2021.
   * slides 2019 [pptx](Slides/Introduction-cps.pptx) [pdf](Slides/Introduction-cps.pdf)
 2. ### Modeling computation
   * pre-lecture notes 2021 [note](Notes/ModelingComputationUnfilled.note) [pdf](Notes/ModelingComputationUnfilled.pdf) 
+  * post-lecture notes 2021 [note](Notes/Modeling-comp-final.note) [pdf](Notes/Modeling-comp-final.pdf) 
   * slides 2019 [pptx](Slides/ModelingComputation.pptx) [pdf](Slides/ModelingComputation.pdf)
   * code [ipynb](https://gitlab.engr.illinois.edu/mitras/cps_bookcode/blob/master/Chapter%202/Notebook/Chapter2.ipynb)
 3. ### Modeling physics
@@ -26,6 +27,8 @@ _MIT Press_, February 2021.
   * Computational tree logic (CTL) and CTL model checking: slides [pptx](Slides/CTLModelChecking.pptx) [pdf](Slides/CTLModelChecking.pdf)
 7. ### Verifying invariants
   * Satisfiability: slides [pptx](Slides/sat-smt.pptx) [pdf](Slides/sat-smt.pdf)
+  * pre-lecture notes 2021 [note](Notes/Satisfiability-pre.note) [pdf](Notes/Satisfiability-pre.pdf) 
+  * post-lecture notes 2021 [note](Notes/Satisfiability-post.note) [pdf](Notes/Satisfiability-post.pdf) 
   * Satisfiability modulo theories: slides [pptx](Slides/smt.pptx) [pdf](Slides/smt.pdf)
   * Notebook [Quick Z3 SMT tutorial](Code/Chapter7/Z3 Quick SMT solver tutorial.ipynb)
   * Proving invariants: slides [pptx](Slides/CPSInvariants.pptx) [pdf](Slides/CPSInvariants.pdf)
