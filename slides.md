@@ -33,6 +33,7 @@ _MIT Press_, February 2021.
   * slides 2019 [pptx](Slides/smt.pptx) [pdf](Slides/smt.pdf)
   * slides 2021 [pptx](Slides/smt21.pptx) [pdf](Slides/smt21.pdf)
   * Linear Real Arithmetic and Simplex: slides [pptx](Slides/simplex21.pptx) [pdf](Slides/simplex21.pdf)
+  * Reluplex: slides [pptx](Slides/reluplex21.pptx) [pdf](Slides/reluplex21.pdf)
   * Notebook [Quick Z3 SMT tutorial](Code/Chapter7/Z3 Quick SMT solver tutorial.ipynb)
   * Proving invariants: slides [pptx](Slides/CPSInvariants.pptx) [pdf](Slides/CPSInvariants.pdf)
 8. ### Abstractions and compositional reasoning
