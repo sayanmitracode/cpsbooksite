@@ -17,6 +17,8 @@ _MIT Press_, February 2021.
   * code [ipynb](https://gitlab.engr.illinois.edu/mitras/cps_bookcode/blob/master/Chapter%202/Notebook/Chapter2.ipynb)
 3. ### Modeling physics
   * slides [pptx](Slides/ModelingPhysics.pptx) [pdf](Slides/ModelingPhysics.pdf)
+  * pre-lecture notes 2021 [note](Notes/Pre-lecture-dynsys.note) [pdf](Notes/Pre-lecture-dynsys.pdf) 
+  * post-lecture notes 2021 [note](Notes/Post-lecture-dynsys.note) [pdf](Notes/Post-lecture-dynsys.pdf) 
   * code for simple economy model  [py](https://github.com/sayanmitracode/cpsbooksite/blob/gh-pages/Code/Chapter3/econmodel.py)
   * code for SIR epidemic model [py](https://github.com/sayanmitracode/cpsbooksite/blob/gh-pages/Code/Chapter3/sir-basic.py)
 4. ### Modeling cyberphysical systems
