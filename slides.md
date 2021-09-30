@@ -18,9 +18,13 @@ _MIT Press_, February 2021.
 3. ### Modeling physics
   * slides [pptx](Slides/ModelingPhysics.pptx) [pdf](Slides/ModelingPhysics.pdf)
   * pre-lecture notes 2021 [note](Notes/Pre-lecture-dynsys.note) [pdf](Notes/Pre-lecture-dynsys.pdf) 
-  * post-lecture notes 2021 [note](Notes/Post-lecture-dynsys.note) [pdf](Notes/Post-lecture-dynsys.pdf) 
+  * post-lecture notes 2021 [note](Notes/Post-Dynamical-systems.note) [pdf](Notes/Post-Dynamical-systems.pdf) 
   * code for simple economy model  [py](https://github.com/sayanmitracode/cpsbooksite/blob/gh-pages/Code/Chapter3/econmodel.py)
   * code for SIR epidemic model [py](https://github.com/sayanmitracode/cpsbooksite/blob/gh-pages/Code/Chapter3/sir-basic.py)
+  * code for vehicle model [py](https://github.com/sayanmitracode/cpsbooksite/blob/gh-pages/Code/Chapter3/rearwheel_hw.py)
+  * stability
+  * pre-lecture notes 2021 [note](Notes/Pre-Lyapunov-stability.note) [pdf](Notes/Pre-Lyapunov-stability.pdf) 
+  * post-lecture notes 2021 [note](Notes/Post-Lyapunov-stability.note) [pdf](Notes/Post-Lyapunov-stability.pdf) 
 4. ### Modeling cyberphysical systems
   * slides [pptx](Slides/ModelingCyberphysicalSystems.pptx) [pdf](Slides/ModelingCyberphysicalSystems.pdf)
 5. ### Composing models
