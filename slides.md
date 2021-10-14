@@ -22,7 +22,7 @@ _MIT Press_, February 2021.
   * code for simple economy model  [py](https://github.com/sayanmitracode/cpsbooksite/blob/gh-pages/Code/Chapter3/econmodel.py)
   * code for SIR epidemic model [py](https://github.com/sayanmitracode/cpsbooksite/blob/gh-pages/Code/Chapter3/sir-basic.py)
   * code for vehicle model [py](https://github.com/sayanmitracode/cpsbooksite/blob/gh-pages/Code/Chapter3/rearwheel_hw.py)
-  * stability
+  * stabilityx
   * pre-lecture notes 2021 [note](Notes/Pre-Lyapunov-stability.note) [pdf](Notes/Pre-Lyapunov-stability.pdf) 
   * post-lecture notes 2021 [note](Notes/Post-Lyapunov-stability.note) [pdf](Notes/Post-Lyapunov-stability.pdf) 
 4. ### Modeling cyberphysical systems
@@ -31,6 +31,7 @@ _MIT Press_, February 2021.
   * slides [pptx](Slides/Composition.pptx) [pdf](Slides/Composition.pdf)
 6. ### Specifying requirements
   * Computational tree logic (CTL) and CTL model checking: slides [pptx](Slides/CTLModelChecking.pptx) [pdf](Slides/CTLModelChecking.pdf)
+    * Computational tree logic (CTL) and CTL model checking: slides 2021 [pptx](Slides/CTLModelChecking21.pptx) [pdf](Slides/CTLModelChecking21.pdf)
 7. ### Verifying invariants
   * Satisfiability: slides [pptx](Slides/sat-smt.pptx) [pdf](Slides/sat-smt.pdf)
   * pre-lecture notes 2021 [note](Notes/Satisfiability-pre.note) [pdf](Notes/Satisfiability-pre.pdf) 
@@ -46,6 +47,7 @@ _MIT Press_, February 2021.
   * Abstractions, simulation relations, substitutivity, and CEGAR: slides [pptx](Slides/Abstractions.pptx) [pdf](Slides/Abstractions.pdf)
 9. ### Reachability analysis 
   * Timed automata: slides [pptx](Slides/ReachabilityTimedAutomata.pptx) [pdf](Slides/ReachabilityTimedAutomata.pdf)
+  * FSMA and Timed automata: slides 2021 [pptx](Slides/ReachabilityTimedAutomata21.pptx) [pdf](Slides/ReachabilityTimedAutomata21.pdf)
   * Undecidability problem for hybrid automata: slides [pptx](Slides/UndecidabilityRHA.pptx) [pdf](Slides/UndecidabilityRHA.pdf)
 10. ### Progress analysis
   * Progress of automata and stability of hybrid systems: slides [pptx](Slides/ProgressVerification.pptx) [pdf](Slides/ProgressVerification.pdf)
