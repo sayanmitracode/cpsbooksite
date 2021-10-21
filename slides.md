@@ -45,6 +45,9 @@ _MIT Press_, February 2021.
   * Proving invariants: slides [pptx](Slides/CPSInvariants.pptx) [pdf](Slides/CPSInvariants.pdf)
 8. ### Abstractions and compositional reasoning
   * Abstractions, simulation relations, substitutivity, and CEGAR: slides [pptx](Slides/Abstractions.pptx) [pdf](Slides/Abstractions.pdf)
+  * pre-lecture notes 2021 [note](Notes/Timeabstraction.note) [pdf](Notes/Timeabstraction.pdf) 
+  * post-lecture notes 2021 [note](Notes/TimeabstractionPost.note) [pdf](Notes/TimeabstractionPost.pdf) 
+ 
 9. ### Reachability analysis 
   * Timed automata: slides [pptx](Slides/ReachabilityTimedAutomata.pptx) [pdf](Slides/ReachabilityTimedAutomata.pdf)
   * FSMA and Timed automata: slides 2021 [pptx](Slides/ReachabilityTimedAutomata21.pptx) [pdf](Slides/ReachabilityTimedAutomata21.pdf)
