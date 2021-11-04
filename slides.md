@@ -57,7 +57,7 @@ _MIT Press_, February 2021.
 11. ### Data-driven verification
   * Progress of automata and stability of hybrid systems: slides [pptx](Slides/Datadriven-verification.pptx) [pdf](Slides/Datadriven-verification.pdf)
 # Appendices
-  * ### A Linear algebra and real analysis
-  * ### B Computability and complexity
-    * Turing machines, undecidability, reductions [note](Notes/TMundecidability.note) [pdf](Notes/TMundecidability.pdf)
-  * ### C Specification language reference
+12. Linear algebra and real analysis
+13. Computability and complexity
+  * Turing machines, undecidability, reductions [note](Notes/TMundecidability.note) [pdf](Notes/TMundecidability.pdf)
+14. Specification language reference
