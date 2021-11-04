@@ -46,12 +46,11 @@ _MIT Press_, February 2021.
 8. ### Abstractions and compositional reasoning
   * Abstractions, simulation relations, substitutivity, and CEGAR: slides [pptx](Slides/Abstractions.pptx) [pdf](Slides/Abstractions.pdf)
   * pre-lecture notes 2021 [note](Notes/Timeabstraction.note) [pdf](Notes/Timeabstraction.pdf) 
-  * post-lecture notes 2021 [note](Notes/TimeabstractionPost.note) [pdf](Notes/TimeabstractionPost.pdf) 
- 
 9. ### Reachability analysis 
   * Timed automata: slides [pptx](Slides/ReachabilityTimedAutomata.pptx) [pdf](Slides/ReachabilityTimedAutomata.pdf)
   * FSMA and Timed automata: slides 2021 [pptx](Slides/ReachabilityTimedAutomata21.pptx) [pdf](Slides/ReachabilityTimedAutomata21.pdf)
   * Undecidability problem for hybrid automata: slides [pptx](Slides/UndecidabilityRHA.pptx) [pdf](Slides/UndecidabilityRHA.pdf) 
+  * post-lecture notes 2021 [note](Notes/TMundecidability-post.note) [pdf](Notes/TMundecidability-post.pdf)
 10. ### Progress analysis
   * Progress of automata and stability of hybrid systems: slides [pptx](Slides/ProgressVerification.pptx) [pdf](Slides/ProgressVerification.pdf)
 11. ### Data-driven verification
