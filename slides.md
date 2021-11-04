@@ -58,5 +58,5 @@ _MIT Press_, February 2021.
   * Progress of automata and stability of hybrid systems: slides [pptx](Slides/Datadriven-verification.pptx) [pdf](Slides/Datadriven-verification.pdf)
 12. ### Appendix A. Linear algebra and real analysis
 13. ### Appendix B. Computability and complexity
-  * Turing machines, undecidability, reductions [note](Notes/TMundecidability.note) [pdf](Notes/TMundecidability.pdf)
+  * post-lecture notes 2021 [note](Notes/TMundecidability.note) [pdf](Notes/TMundecidability.pdf)
 14. ### Appendix C. Specification language reference
