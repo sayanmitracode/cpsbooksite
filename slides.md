@@ -51,7 +51,7 @@ _MIT Press_, February 2021.
 9. ### Reachability analysis 
   * Timed automata: slides [pptx](Slides/ReachabilityTimedAutomata.pptx) [pdf](Slides/ReachabilityTimedAutomata.pdf)
   * FSMA and Timed automata: slides 2021 [pptx](Slides/ReachabilityTimedAutomata21.pptx) [pdf](Slides/ReachabilityTimedAutomata21.pdf)
-  * Undecidability problem for hybrid automata: slides [pptx](Slides/UndecidabilityRHA.pptx) [pdf](Slides/UndecidabilityRHA.pdf)
+  * Undecidability problem for hybrid automata: slides [pptx](Slides/UndecidabilityRHA.pptx) [pdf](Slides/UndecidabilityRHA.pdf) 
 10. ### Progress analysis
   * Progress of automata and stability of hybrid systems: slides [pptx](Slides/ProgressVerification.pptx) [pdf](Slides/ProgressVerification.pdf)
 11. ### Data-driven verification
@@ -59,4 +59,5 @@ _MIT Press_, February 2021.
 # Appendices
   * ### A Linear algebra and real analysis
   * ### B Computability and complexity
+    * Turing machines, undecidability, reductions [note](Notes/TMundecidability.note) [pdf](Notes/TMundecidability.pdf)
   * ### C Specification language reference
