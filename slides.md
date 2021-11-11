@@ -53,6 +53,8 @@ _MIT Press_, February 2021.
   * post-lecture notes 2021 [note](Notes/TMundecidability-post.note) [pdf](Notes/TMundecidability-post.pdf)
 10. ### Progress analysis
   * Progress of automata and stability of hybrid systems: slides [pptx](Slides/ProgressVerification.pptx) [pdf](Slides/ProgressVerification.pdf)
+  * pre-lecture notes 2021 [note](Notes/Progress-pre.note) [pdf](Notes/Progress-pre.pdf) 
+
 11. ### Data-driven verification
   * Progress of automata and stability of hybrid systems: slides [pptx](Slides/Datadriven-verification.pptx) [pdf](Slides/Datadriven-verification.pdf)
 12. ### Appendix A. Linear algebra and real analysis
