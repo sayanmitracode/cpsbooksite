@@ -1,6 +1,6 @@
 # CPS Verification Book Website
 
-This is the sourcecode for the live website for the book: 
+This is the sourcecode for the live [website](https://sayanmitracode.github.io/cpsbooksite/) for the book: 
 
 [Verifying Cyber-Physical Systems: A path to safe autonomy](https://tinyurl.com/cpsbookmitra) by <i>[Sayan Mitra](https://mitras.ece.illinois.edu/)</i>
 
