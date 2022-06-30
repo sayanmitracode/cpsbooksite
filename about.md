@@ -37,7 +37,7 @@ Learn more, read the book.
 @book{MitraCPSBook2021,
 	author = {Sayan Mitra},
 	title = {Verifying Cyber-Physical Systems: A Path to Safe Autonomy},
-	date = {February 16, 2021},
+	date = {2021-02-16},
 	publisher = {MIT Press},
 	isbn = {978-0-262-04480-6},
 	pagetotal = {312},
