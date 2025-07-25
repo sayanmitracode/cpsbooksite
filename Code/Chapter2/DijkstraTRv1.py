@@ -1,74 +1,70 @@
-from verse.plotter.plotter2D import *
-from verse.agents.example_agent.ball_agent import BallAgent
+from verse.plotter.plotter2D import simulation_tree #, dump_analysis_tree
+from time_agent import TimeAgent  
 from verse import Scenario, ScenarioConfig
+import plotly.graph_objects as go
 from enum import Enum, auto
 import copy
 
+class TRMode(Enum):
+    NORMAL = auto()
+
+class State:
+    def __init__(self, time: float, x: list, mode: TRMode):
+        self.time = time
+        self.x = x
+        self.mode = mode
+
+def decisionLogic(ego: State):
+    """
+    Implements update(i) at every delta_t = 1.0
+    """
+    delta_t = 1.0
+    N = 4
+    K = 3
+
+    output = copy.deepcopy(ego)
+    t = ego.time
+    x = ego.x.copy()
+    
+    i = int((t // delta_t) % N)
+    if t % delta_t < 1e-4:  # approximate trigger condition at delta_t
+        if i == 0:
+            if x[0] == x[N - 1]:
+                x[0] = (x[0] + 1) % K
+        else:
+            if x[i] != x[i - 1]:
+                x[i] = x[i - 1]
+    output.x = x
+    return output
+
+
+
 # Parameters
-N = 5  # Number of agents
-K = 3  # Token values in 0 to K-1
+N = 4
+init_x = [0 for _ in range(N)]
+sim_time = 20
+step_size = 0.01
+max_branch = 6
 
-# Define ID and Val types
-ID = list(range(N))
-Val = list(range(K))
+# Create scenario
+scenario = Scenario(ScenarioConfig(parallel=False))
+CONTROLLER = "/Users/mitras/Jekyll/cpsbook/Code/Chapter2/DijkstraTRv1.py"
+agent = TimeAgent("token-ring", file_name=CONTROLLER)
+scenario.add_agent(agent)
 
-# Create automaton
-class DijkstraTR(Automaton):
-    def __init__(self, N, K):
-        super().__init__('DijkstraTR')
-        self.N = N
-        self.K = K
-        self.ID = list(range(N))
-        self.Val = list(range(K))
+# Initial state: time=0.0, x = [0, ..., 0]
+scenario.set_init(
+    [[[0.0] + init_x]],
+    [(TRMode.NORMAL,)]
+)
 
-        # State: x[i] for each agent i
-        self.vars = {f'x[{i}]': 0 for i in self.ID}  # Initial state: all 0
+# Simulate
+trace = scenario.simulate_simple(sim_time, step_size, max_branch)
 
-        self.define_transitions()
-
-    def define_transitions(self):
-        trans = []
-
-        # Transition for agent 0
-        def guard0(x):
-            return x['x[0]'] == x[f'x[{self.N - 1}]']
-
-        def update0(x):
-            x_new = deepcopy(x)
-            x_new['x[0]'] = (x['x[0]'] + 1) % self.K
-            return x_new
-
-        trans.append(SymbolicTransition(guard0, update0, name="update_0"))
-
-        # Transitions for agent i > 0
-        for i in range(1, self.N):
-            def make_guard(i):
-                return lambda x, i=i: x[f'x[{i}]'] != x[f'x[{i - 1}]']
-
-            def make_update(i):
-                return lambda x, i=i: {**x, f'x[{i}]': x[f'x[{i - 1}]']}
-
-            trans.append(SymbolicTransition(make_guard(i), make_update(i), name=f"update_{i}"))
-
-        self.transitions = trans
-
-
-# Instantiate automaton
-automaton = DijkstraTR(N=N, K=K)
-
-# Define initial condition
-init_state = {f'x[{i}]': 0 for i in range(N)}  # all start at 0
-
-# Configure and run simulation
-sim_config = SimulationConfig(init_state=init_state, time_horizon=20, sampling_time=1.0)
-trace = simulate(automaton, sim_config)
-
-# Plot result
-for i in range(N):
-    plt.plot([s[f'x[{i}]'] for s in trace], label=f'x[{i}]')
-plt.xlabel('Step')
-plt.ylabel('Value')
-plt.title('Dijkstra Token Ring Automaton Simulation')
-plt.legend()
-plt.grid(True)
-plt.show()
+# Plot
+fig = simulation_tree(
+    trace, map=None, fig=go.Figure(),
+    x_dim=0, y_dim=1, map_type='lines',
+    scale_type='trace', label_mode='None', sample_rate=1
+)
+fig.show()

@@ -1,6 +1,6 @@
 # basic_timer.py
 
-from verse.plotter.plotter2D import simulation_tree
+from verse.plotter.plotter2D import simulation_tree #, dump_analysis_tree
 from time_agent import TimeAgent  
 # from verse.agents.example_agent.timer_agent import TimeAgent  # Or replace with your actual path
 from verse import Scenario, ScenarioConfig
@@ -29,14 +29,13 @@ def decisionLogic(ego: State):
     output = copy.deepcopy(ego)
     return output
 
-
     
 if __name__ == "__main__":
     # Set up scenario
     scenario = Scenario(ScenarioConfig(parallel=False))
-    
+
     # Define agent and controller path
-    # This has to set properly
+    # Set the absolute path to your file:
     CONTROLLER = "/Users/mitras/Jekyll/cpsbook/Code/Chapter2/basic_timer.py"
     timer_agent = TimeAgent("timer", file_name=CONTROLLER)
 
@@ -66,4 +65,4 @@ if __name__ == "__main__":
     )
     fig.show()
     print(trace)
-
+    print_tree_node_trace(trace.root)
