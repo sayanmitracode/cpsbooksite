@@ -1,0 +1,62 @@
+from z3 import *
+from Automaton import Automaton
+import matplotlib.pyplot as plt
+
+
+x = Int('x')
+state_vars = [x]
+action_names = ["step"]
+init_predicate = x == 47
+
+def collatz_transition(s_vars, a, s_prime_vars):
+    x, = s_vars
+    x_p, = s_prime_vars
+    if a == "step":
+        return Or(
+            And(x % 2 == 0, x_p == x / 2),
+            And(x % 2 == 1, x_p == 3 * x + 1)
+        )
+    return False
+
+
+def plot_multiple_traces(traces, labels=None, title="Execution Traces of x"):
+    """
+    traces: list of traces (each trace is a list of single-variable states)
+    labels: optional list of labels for the traces
+    """
+    plt.figure(figsize=(10, 5))
+
+    for i, trace in enumerate(traces):
+        x_vals = [s[0].as_long() for s in trace]  # Extracting x python values from the z3
+        steps = list(range(len(x_vals)))
+        label = labels[i] if labels else f"Trace {i+1}"
+        plt.plot(steps, x_vals, marker='o', label=label)
+
+    plt.xlabel("Step")
+    plt.ylabel("x")
+    plt.title(title)
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+
+
+Collatz = Automaton(state_vars, action_names, init_predicate, collatz_transition)
+
+# Example execution
+trace = Collatz.generate_execution(max_len=200)
+Collatz.print_trace(trace)
+
+#for i, s in enumerate(trace):
+#   print(f"Step {i}: {s[0]}")
+
+initial_values = [5, 11, 19, 27, 47]
+traces = []
+labels = []
+
+for x0 in initial_values:
+    trace = Collatz.generate_execution(start_vals=[x0])
+    traces.append(trace)
+    labels.append(f"x={x0}")
+
+plot_multiple_traces(traces, labels, title="Collatz Traces from Various Initial Values")
