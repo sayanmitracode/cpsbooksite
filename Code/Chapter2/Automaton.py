@@ -119,34 +119,18 @@ class Automaton:
 
 
     def reachability_tree(self, initial_state, max_depth=5, action_policy=None, all_actions=False, max_branching=100):
-        """
-        Build a reachability tree from a given initial concrete state.
-
-        Fixes duplicate nodes by storing and comparing canonical keys.
-        """
         def state_to_key(s):
-            """Convert a state to a tuple key for graph/tree nodes."""
-            key = []
-            for v in s:
-                if is_bool(v):
-                    key.append(is_true(v))
-                elif is_int_value(v):
-                    key.append(v.as_long())
-                elif is_rational_value(v):
-                    key.append(str(v.as_decimal(10)))
-                else:
-                    key.append(str(simplify(v)))
-            return tuple(key)
+            return self.format_state_label(s)  # use string labels directly as node keys
 
         root = self.normalize(initial_state)
-        root_key = state_to_key(root)
-
         G = nx.DiGraph()
+        root_key = state_to_key(root)
         G.add_node(root_key, state=root, depth=0)
-        queue = [(root_key, root)]  # store keys + states
+        queue = [root]
 
         while queue:
-            state_key, state = queue.pop(0)
+            state = queue.pop(0)
+            state_key = state_to_key(state)
             depth = G.nodes[state_key]['depth']
             if depth >= max_depth:
                 continue
@@ -159,10 +143,11 @@ class Automaton:
                     succ_key = state_to_key(succ)
                     if not G.has_node(succ_key):
                         G.add_node(succ_key, state=succ, depth=depth + 1)
-                        queue.append((succ_key, succ))
+                        queue.append(succ)
                     G.add_edge(state_key, succ_key, label=action)
 
         return G
+
 
 
     def format_state_label(self, state):
@@ -199,35 +184,34 @@ class Automaton:
 
 
     def graphviz_reachability_tree(self, G, title="Reachability Tree", layout="dot", figsize=(10, 6)):
-        """
-        Plot the reachability tree using pygraphviz for better layout.
-        Ensures node identity and avoids duplicate labels like '000'.
-        """
-        A = pgv.AGraph(strict=True, directed=True)
+        A = to_agraph(G)
 
-        # Add all nodes with unique names and canonical labels
-        for node_key, data in G.nodes(data=True):
-            label = self.format_state_label(data['state'])
-            name = str(node_key)  # unique, e.g., (False, True, False)
-            A.add_node(name, label=label,
-                    style='filled',
-                    fillcolor='orange' if data['depth'] == 0 else 'lightblue',
-                    color='none' if data['depth'] != 0 else 'red')
+        for node in A.nodes():
+            node_str = node.get_name()
+            state = G.nodes[node_str]['state']
+            # Generate a unique label for each node/state; this 
+            # function should be overridden in subclasses
+            label = self.format_state_label(state)
+            # Coloring scheme for nodes
+            if G.nodes[node_str]['depth'] == 0:
+                node.attr.update({'color': 'red', 'style': 'filled', 'fillcolor': 'orange'})
+            else:
+                node.attr.update({'color': 'none', 'style': 'filled', 'fillcolor': 'lightblue'})
+            node.attr['label'] = label
 
-        # Add edges using stringified node keys
-        for u, v, edata in G.edges(data=True):
-            A.add_edge(str(u), str(v), label=edata.get('label', ''))
+        for edge in A.edges():
+            label = G.edges[edge[0], edge[1]].get('label', '')
+            edge.attr['label'] = label
 
-        # Render
         A.layout(prog=layout)
         png_data = A.draw(format='png')
 
-        # Show with matplotlib
         plt.figure(figsize=figsize)
         plt.title(title)
         plt.axis('off')
         plt.imshow(plt.imread(io.BytesIO(png_data)))
         plt.show()
+
 
 
 
