@@ -13,13 +13,13 @@ import matplotlib.pyplot as plt
 
 x = Int('x')
 state_vars = [x]
-action_names = ["step"]
+action_names = ["update"]
 init_predicate = x == 47
 
 def collatz_transition(s_vars, a, s_prime_vars):
     x, = s_vars
     x_p, = s_prime_vars
-    if a == "step":
+    if a == "update":
         return Or(
             And(x % 2 == 0, x_p == x / 2),
             And(x % 2 == 1, x_p == 3 * x + 1)
@@ -27,15 +27,15 @@ def collatz_transition(s_vars, a, s_prime_vars):
     return False
 
 
-def plot_multiple_traces(traces, labels=None, title="Execution Traces of x"):
+def plot_multiple_execs(execs, labels=None, title="Execution Traces of x"):
     """
-    traces: list of traces (each trace is a list of single-variable states)
-    labels: optional list of labels for the traces
+    execs: list of executions (each execution is a list of single-variable states)
+    labels: optional list of labels for the executions
     """
     plt.figure(figsize=(10, 5))
 
-    for i, trace in enumerate(traces):
-        x_vals = [s[0].as_long() for s in trace]  # Extracting x python values from the z3
+    for i, exec in enumerate(execs):
+        x_vals = [s[0].as_long() for s in exec]  # Extracting x python values from the z3
         steps = list(range(len(x_vals)))
         label = labels[i] if labels else f"Trace {i+1}"
         plt.plot(steps, x_vals, marker='o', label=label)
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     Collatz = Automaton(state_vars, action_names, init_predicate, collatz_transition)
 
     # Example execution
-    trace = Collatz.generate_execution(max_len=200)
+    trace = Collatz.generate_single_execution(max_len=200)
     Collatz.print_trace(trace)
 
     #for i, s in enumerate(trace):
@@ -65,8 +65,10 @@ if __name__ == "__main__":
     labels = []
 
     for x0 in initial_values:
-        trace = Collatz.generate_execution(start_vals=[x0])
-        traces.append(trace)
+        exec = Collatz.generate_single_execution(start_vals=[x0])
+        state_exec = [state for (_, state) in exec]
+        traces.append(state_exec)
         labels.append(f"x={x0}")
 
-    plot_multiple_traces(traces, labels, title="Collatz Traces from Various Initial Values")
+
+    plot_multiple_execs(traces, labels, title="Collatz Executions from Various Initial Values")

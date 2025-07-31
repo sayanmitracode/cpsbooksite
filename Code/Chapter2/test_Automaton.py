@@ -21,10 +21,16 @@ class TestIncDecAutomaton(unittest.TestCase):
         s = self.A.post_one([IntVal(0)], "dec")
         self.assertEqual(s[0].as_long(), -1)
 
-    def test_all_next_steps(self):
-        next_states = self.A.step_all([IntVal(0)], "inc") + self.A.step_all([IntVal(0)], "dec")
-        next_values = sorted(s[0].as_long() for s in next_states)
-        self.assertEqual(next_values, [-1, 1])
+    def test_post_action(self):
+        # Test post_action with "inc"
+        post_inc = self.A.post_action([IntVal(0)], "inc")
+        self.assertEqual(post_inc, [[IntVal(1)]])
+    
+    def test_post(self):
+        # Test post from a single state over all actions
+        post_states = self.A.post([IntVal(0)])
+        expected_states = [[IntVal(1)], [IntVal(-1)]]
+        self.assertTrue(post_states == expected_states or post_states == [[IntVal(-1)], [IntVal(1)]])
 
 class TestCollatzAutomaton(unittest.TestCase):
     def setUp(self):
@@ -36,7 +42,7 @@ class TestCollatzAutomaton(unittest.TestCase):
         )
 
     def test_collatz_first_step(self):
-        s = self.A.post_one([IntVal(7)], "step")
+        s = self.A.post_one([IntVal(7)], "update")
         self.assertEqual(s[0].as_long(), 22)
 
 
