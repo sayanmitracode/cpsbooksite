@@ -32,6 +32,28 @@ class TestIncDecAutomaton(unittest.TestCase):
         expected_states = [[IntVal(1)], [IntVal(-1)]]
         self.assertTrue(post_states == expected_states or post_states == [[IntVal(-1)], [IntVal(1)]])
 
+    def test_incdec_tree_depth_2(self):
+        G = self.A.reachability_tree(initial_state=[0], max_depth=2, all_actions=True)
+
+        # Root should be x=0
+        root_key = ('0',)
+        assert root_key in G.nodes, "Root node not found"
+
+        # x=0 should have 2 successors: x=1 and x=-1
+        children = set(G.successors(root_key))
+        expected = {('1',), ('-1',)}
+        assert children == expected, f"Unexpected successors of x=0: {children}"
+
+        # Total nodes should be 5: 0, 1, -1, 2, -2
+        assert len(G.nodes) == 5, f"Expected 5 nodes, got {len(G.nodes)}"
+
+    def test_no_duplicate_keys(self):
+        G = self.A.reachability_tree(initial_state=[0], max_depth=3, all_actions=True)
+        assert len(G.nodes) == len(set(G.nodes)), "Duplicate keys found in IncDec"
+
+        G2 = self.A.reachability_tree(initial_state=[False, False, False], max_depth=3, all_actions=True)
+        assert len(G2.nodes) == len(set(G2.nodes)), "Duplicate keys found in BitFlip"
+
 class TestCollatzAutomaton(unittest.TestCase):
     def setUp(self):
         self.A = Automaton(
