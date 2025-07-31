@@ -2,6 +2,7 @@ from z3 import *
 import networkx as nx
 # from z3 import IntVal
 import matplotlib.pyplot as plt
+from networkx.drawing.nx_agraph import to_agraph
 
 class Automaton:
     def __init__(self, state_vars, action_names, init_predicate, transition_relation):
@@ -190,6 +191,41 @@ class Automaton:
         plt.axis('off')
         plt.show()
 
+
+
+    def graphviz_reachability_tree(self, G, title="Reachability Tree", layout="dot", figsize=(10, 6)):
+        """
+        Plot the reachability tree using pygraphviz for better layout.
+
+        Parameters:
+        - G: networkx.DiGraph with nodes having 'state' and 'depth'
+        - title: plot title
+        - layout: graphviz layout engine, e.g., 'dot', 'neato', 'fdp'
+        - figsize: tuple for figure size
+        """
+        A = to_agraph(G)
+
+        # Format node labels
+        for node in A.nodes():
+            state = G.nodes[str(node)]['state']
+            label = self.format_state_label(state)
+            if G.nodes[str(node)]['depth'] == 0:
+                node.attr['color'] = 'red'
+                node.attr['style'] = 'filled'
+                node.attr['fillcolor'] = 'lightyellow'
+            node.attr['label'] = label
+
+        # Format edge labels
+        for edge in A.edges():
+            label = G.edges[edge[0], edge[1]].get('label', '')
+            edge.attr['label'] = label
+
+        A.layout(prog=layout)
+        plt.figure(figsize=figsize)
+        plt.title(title)
+        plt.axis('off')
+        plt.imshow(plt.imread(A.draw(format='png')))
+        plt.show()
 
 
     def Transition(self, state_formula):

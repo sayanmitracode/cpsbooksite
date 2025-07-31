@@ -38,3 +38,4 @@ if __name__ == "__main__":
     G = BitFlip.reachability_tree(initial_state=[False, False, False], max_depth=3, all_actions=True)
 
     BitFlip.plot_reachability_tree(G, title="BitFlip Reachability Tree")
+    # BitFlip.graphviz_reachability_tree(G, title="BitFlip Reachability Tree", layout="dot")
