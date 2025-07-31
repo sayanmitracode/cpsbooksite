@@ -23,30 +23,47 @@ class Automaton:
         s.add(self.init_predicate)
         return s.check() == sat
 
-    def step(self, s_val, a_name):
-        if a_name not in self.action_names:
-            raise ValueError(f"Unknown action: {a_name}")
+    def post_one(self, state, action):
+        """Return one successor state for the given state and action."""
+        if action not in self.action_names:
+            raise ValueError(f"Unknown action: {action}")
         solver = Solver()
-        subst = [v == val for v, val in zip(self.state_vars, s_val)]
-        tr = self.transition_relation(self.state_vars, a_name, self.state_vars_prime)
+        subst = [v == val for v, val in zip(self.state_vars, state)]
+        tr = self.transition_relation(self.state_vars, action, self.state_vars_prime)
         solver.add(subst + [tr])
         if solver.check() == sat:
             model = solver.model()
             return [model.eval(v, model_completion=True) for v in self.state_vars_prime]
         return None
     
-    def step_all(self, s_val, a_name, max_solutions=10):
-        solver = Solver()
-        subst = [v == val for v, val in zip(self.state_vars, s_val)]
-        tr = self.transition_relation(self.state_vars, a_name, self.state_vars_prime)
-        solver.add(subst + [tr])
-        solutions = []
-        while solver.check() == sat and len(solutions) < max_solutions:
-            model = solver.model()
-            next_state = [model.eval(v, model_completion=True) for v in self.state_vars_prime]
-            solutions.append(next_state)
-            solver.add(Or([v != val for v, val in zip(self.state_vars_prime, next_state)]))
-        return solutions
+    def post_action(self, state, action, max_solutions=10):
+        """Return all---up to max_solutions---successor states for a given state and action."""
+        if action not in self.action_names:
+            raise ValueError(f"Unknown action: {action}")
+        
+        successors = []
+        while True:
+            result = self.post_one(state, action)
+            if result is None:
+                break
+            successors.append(result)
+            # Add a constraint to block this result
+            blocking_clause = Or([v != val for v, val in zip(self.state_vars_prime, result)])
+            solver = Solver()
+            subst = [v == val for v, val in zip(self.state_vars, state)]
+            tr = self.transition_relation(self.state_vars, action, self.state_vars_prime)
+            solver.add(subst + [tr] + [blocking_clause])
+            if len(successors) >= max_solutions or solver.check() != sat:
+                break
+        return successors
+
+    def post(self, state, max_solutions_per_action=10):
+        """Return all successors for a given state across all actions."""
+        all_successors = []
+        for action in self.action_names:
+            succs = self.post_action(state, action, max_solutions=max_solutions_per_action)
+            all_successors.extend(succs)
+        return all_successors
 
 
     def generate_execution(self, start_vals=None, action_policy=None, max_len=100):
@@ -76,7 +93,7 @@ class Automaton:
 
         for _ in range(max_len):
             action = action_policy(current) if action_policy else self.action_names[0]
-            next_state = self.step(current, action)
+            next_state = self.post_one(current, action)
             if not next_state:
                 break
             trace.append(next_state)

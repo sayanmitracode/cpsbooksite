@@ -1,3 +1,11 @@
+# model of an automaton that simulates the Collatz conjecture
+# It generates traces of the state variable x, which follows the rules:
+# - If x is even, the next state is x / 2
+# - If x is odd, the next state is 3 * x + 1
+# This is a deterministic, integer-valued automaton. 
+# For arbitrary initial values, it is Unknown whether it will reach 1.
+# Sayan Mitra, 2025
+
 from z3 import *
 from Automaton import Automaton
 import matplotlib.pyplot as plt
@@ -41,22 +49,24 @@ def plot_multiple_traces(traces, labels=None, title="Execution Traces of x"):
     plt.show()
 
 
-Collatz = Automaton(state_vars, action_names, init_predicate, collatz_transition)
+if __name__ == "__main__":
+    # Create the automaton instance
+    Collatz = Automaton(state_vars, action_names, init_predicate, collatz_transition)
 
-# Example execution
-trace = Collatz.generate_execution(max_len=200)
-Collatz.print_trace(trace)
+    # Example execution
+    trace = Collatz.generate_execution(max_len=200)
+    Collatz.print_trace(trace)
 
-#for i, s in enumerate(trace):
-#   print(f"Step {i}: {s[0]}")
+    #for i, s in enumerate(trace):
+    #   print(f"Step {i}: {s[0]}")
 
-initial_values = [5, 11, 19, 27, 47]
-traces = []
-labels = []
+    initial_values = [5, 11, 19, 27, 47]
+    traces = []
+    labels = []
 
-for x0 in initial_values:
-    trace = Collatz.generate_execution(start_vals=[x0])
-    traces.append(trace)
-    labels.append(f"x={x0}")
+    for x0 in initial_values:
+        trace = Collatz.generate_execution(start_vals=[x0])
+        traces.append(trace)
+        labels.append(f"x={x0}")
 
-plot_multiple_traces(traces, labels, title="Collatz Traces from Various Initial Values")
+    plot_multiple_traces(traces, labels, title="Collatz Traces from Various Initial Values")
