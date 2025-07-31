@@ -3,6 +3,10 @@ import networkx as nx
 # from z3 import IntVal
 import matplotlib.pyplot as plt
 from networkx.drawing.nx_agraph import to_agraph
+import pygraphviz as pgv
+import io
+import ast  # safer than eval
+
 
 class Automaton:
     def __init__(self, state_vars, action_names, init_predicate, transition_relation):
@@ -118,34 +122,35 @@ class Automaton:
         """
         Build a reachability tree from a given initial concrete state.
 
-        Parameters:
-        - initial_state: list of ints or Z3 ExprRefs representing initial state
-        - max_depth: maximum depth of BFS
-        - action_policy: function(state_list) -> action_name (optional)
-        - all_actions: if True, explore all actions at each step
-        - max_branching: maximum number of successors to explore per state and action
-
-        Returns:
-        - A networkx.DiGraph with nodes = list of Z3 values, edges labeled with actions
-        """        
+        Fixes duplicate nodes by storing and comparing canonical keys.
+        """
         def state_to_key(s):
-            """Convert a state to a hashable key for the graph."""
-            return tuple(str(v) for v in s)  # hashable, retains per-var identity
+            """Convert a state to a tuple key for graph/tree nodes."""
+            key = []
+            for v in s:
+                if is_bool(v):
+                    key.append(is_true(v))
+                elif is_int_value(v):
+                    key.append(v.as_long())
+                elif is_rational_value(v):
+                    key.append(str(v.as_decimal(10)))
+                else:
+                    key.append(str(simplify(v)))
+            return tuple(key)
 
         root = self.normalize(initial_state)
-        G = nx.DiGraph()
         root_key = state_to_key(root)
+
+        G = nx.DiGraph()
         G.add_node(root_key, state=root, depth=0)
-        queue = [root]
+        queue = [(root_key, root)]  # store keys + states
 
         while queue:
-            state = queue.pop(0)
-            state_key = state_to_key(state)
+            state_key, state = queue.pop(0)
             depth = G.nodes[state_key]['depth']
             if depth >= max_depth:
                 continue
 
-            # Choose actions
             actions = self.action_names if all_actions else [action_policy(state)] if action_policy else [self.action_names[0]]
 
             for action in actions:
@@ -154,10 +159,11 @@ class Automaton:
                     succ_key = state_to_key(succ)
                     if not G.has_node(succ_key):
                         G.add_node(succ_key, state=succ, depth=depth + 1)
-                        queue.append(succ)
+                        queue.append((succ_key, succ))
                     G.add_edge(state_key, succ_key, label=action)
 
         return G
+
 
     def format_state_label(self, state):
         """
@@ -192,40 +198,39 @@ class Automaton:
         plt.show()
 
 
-
     def graphviz_reachability_tree(self, G, title="Reachability Tree", layout="dot", figsize=(10, 6)):
         """
         Plot the reachability tree using pygraphviz for better layout.
-
-        Parameters:
-        - G: networkx.DiGraph with nodes having 'state' and 'depth'
-        - title: plot title
-        - layout: graphviz layout engine, e.g., 'dot', 'neato', 'fdp'
-        - figsize: tuple for figure size
+        Ensures node identity and avoids duplicate labels like '000'.
         """
-        A = to_agraph(G)
+        A = pgv.AGraph(strict=True, directed=True)
 
-        # Format node labels
-        for node in A.nodes():
-            state = G.nodes[str(node)]['state']
-            label = self.format_state_label(state)
-            if G.nodes[str(node)]['depth'] == 0:
-                node.attr['color'] = 'red'
-                node.attr['style'] = 'filled'
-                node.attr['fillcolor'] = 'lightyellow'
-            node.attr['label'] = label
+        # Add all nodes with unique names and canonical labels
+        for node_key, data in G.nodes(data=True):
+            label = self.format_state_label(data['state'])
+            name = str(node_key)  # unique, e.g., (False, True, False)
+            A.add_node(name, label=label,
+                    style='filled',
+                    fillcolor='orange' if data['depth'] == 0 else 'lightblue',
+                    color='none' if data['depth'] != 0 else 'red')
 
-        # Format edge labels
-        for edge in A.edges():
-            label = G.edges[edge[0], edge[1]].get('label', '')
-            edge.attr['label'] = label
+        # Add edges using stringified node keys
+        for u, v, edata in G.edges(data=True):
+            A.add_edge(str(u), str(v), label=edata.get('label', ''))
 
+        # Render
         A.layout(prog=layout)
+        png_data = A.draw(format='png')
+
+        # Show with matplotlib
         plt.figure(figsize=figsize)
         plt.title(title)
         plt.axis('off')
-        plt.imshow(plt.imread(A.draw(format='png')))
+        plt.imshow(plt.imread(io.BytesIO(png_data)))
         plt.show()
+
+
+
 
 
     def Transition(self, state_formula):

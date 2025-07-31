@@ -49,3 +49,4 @@ if __name__ == "__main__":
 
     G = IncDec.reachability_tree(initial_state=[0], max_depth=4, all_actions=True)
     IncDec.plot_reachability_tree(G, title="IncDec Reachability Tree")
+    IncDec.graphviz_reachability_tree(G, title="IncDec Reachability Tree", layout="dot", figsize=(10, 10))
