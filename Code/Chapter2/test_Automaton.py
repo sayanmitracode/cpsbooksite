@@ -36,12 +36,12 @@ class TestIncDecAutomaton(unittest.TestCase):
         G = self.A.reachability_tree(initial_state=[0], max_depth=2, all_actions=True)
 
         # Root should be x=0
-        root_key = ('0',)
+        root_key = (0,)
         assert root_key in G.nodes, "Root node not found"
 
         # x=0 should have 2 successors: x=1 and x=-1
         children = set(G.successors(root_key))
-        expected = {('1',), ('-1',)}
+        expected = {(1,), (-1,)}
         assert children == expected, f"Unexpected successors of x=0: {children}"
 
         # Total nodes should be 5: 0, 1, -1, 2, -2
