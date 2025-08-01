@@ -12,6 +12,8 @@ state_template = State([("x", IntSort(), 0)])
 x = Const("x", IntSort())
 init_pred = (x == 7)
 
+actions = ["update"]
+
 # Transition function
 def collatz_transition(state, action, state_prime):
     x, = state
@@ -42,7 +44,7 @@ def collatz_transition(state, action, state_prime):
 
 if __name__ == "__main__":
     # Instantiate the automaton
-    Collatz = Automaton(state_template, ["update"], init_pred, collatz_transition)
+    Collatz = Automaton(state_template, actions, init_pred, collatz_transition)
 
     print(Collatz.state_vars) 
     print(Collatz.actions)
