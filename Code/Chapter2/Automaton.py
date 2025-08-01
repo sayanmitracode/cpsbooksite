@@ -51,6 +51,8 @@ class Automaton:
         return solver.check() == sat
 
     def post_one(self, state, action):
+        """Return a single successor state for the given state and action.
+        returns error if the action is not valid or not enabled."""
         if action not in self.actions:
             raise ValueError(f"Unknown action: {action}")
 
@@ -72,6 +74,9 @@ class Automaton:
 
 
     def post_action(self, state, action, max_solutions=10):
+        """ Return a list of successor states for the given state and action.
+        state: a State instance
+        returns a possibly empty list of successor states"""
         if action not in self.actions:
             raise ValueError(f"Unknown action: {action}")
 
@@ -99,30 +104,53 @@ class Automaton:
         return all_successors
 
     def generate_single_execution(self, start_state=None, action_policy=None, max_len=100):
-        if start_state is None:
-            solver = Solver()
-            solver.add(self.init_predicate)
-            if solver.check() != sat:
-                raise ValueError("No initial state satisfies the initial predicate.")
-            model = solver.model()
-            vals = [model.eval(v, model_completion=True) for v in self.state_vars]
-            current = State.from_z3(self.state_vars, vals)
-        else:
-            current = start_state
-
+        current = start_state if start_state is not None else self.sample_initial_state()
         trace = [(None, current)]
 
         for _ in range(max_len):
-            action = action_policy(current) if action_policy else self.actions[0]
-            # Chooses only the first action if no policy is provided.
-            # CAUTION: That action[0] may not be enabled and could lead to a deadlock.
-            next_state = self.post_one(current, action)
-            if not next_state:
+            enabled_actions = [a for a in self.actions if self.enabled(current, a)]
+
+            if not enabled_actions:
+                print(f"Deadlock: No enabled action from state {str(current)}")
                 break
+
+            action = action_policy(current) if action_policy else enabled_actions[0]
+            next_state = self.post_one(current, action)
+
+            if not next_state:
+                print(f"Transition failure: action '{action}' enabled but post_one returned None")
+                break
+
             trace.append((action, next_state))
             current = next_state
 
         return trace
+        
+    # def generate_single_execution(self, start_state=None, action_policy=None, max_len=100):
+    #     if start_state is None:
+    #         solver = Solver()
+    #         solver.add(self.init_predicate)
+    #         if solver.check() != sat:
+    #             raise ValueError("No initial state satisfies the initial predicate.")
+    #         model = solver.model()
+    #         vals = [model.eval(v, model_completion=True) for v in self.state_vars]
+    #         current = State.from_z3(self.state_vars, vals)
+    #     else:
+    #         current = start_state
+
+    #     trace = [(None, current)]
+
+    #     for _ in range(max_len):
+    #         action = action_policy(current) if action_policy else self.actions[0]
+    #         # Chooses only the first action if no policy is provided.
+    #         # CAUTION: That action[0] may not be enabled and could lead to a deadlock.
+    #         next_state = self.post_one(current, action)
+    #         if not next_state:
+    #             break
+    #         trace.append((action, next_state))
+    #         current = next_state
+
+    #     return trace
     
     def print_execution(self, execution):
         """
