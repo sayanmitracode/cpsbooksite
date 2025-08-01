@@ -177,16 +177,21 @@ class Automaton:
         A = to_agraph(G)
         for node in A.nodes():
             node_str = node.get_name()
-            state = G.nodes[node_str]['state']
-            label = str(state)
-            if G.nodes[node_str]['depth'] == 0:
+            key = ast.literal_eval(node_str)
+            if isinstance(key, tuple):
+                key = tuple(key)
+            state = G.nodes[key]['state']
+            label = self.format_state_label(state) if hasattr(self, 'format_state_label') else str(state)
+            if G.nodes[key]['depth'] == 0:
                 node.attr.update({'color': 'red', 'style': 'filled', 'fillcolor': 'orange'})
             else:
                 node.attr.update({'color': 'none', 'style': 'filled', 'fillcolor': 'lightblue'})
             node.attr['label'] = label
 
         for edge in A.edges():
-            label = G.edges[edge[0], edge[1]].get('label', '')
+            src = ast.literal_eval(edge[0])
+            dst = ast.literal_eval(edge[1])
+            label = G.edges[(src, dst)].get('label', '')
             edge.attr['label'] = label
 
         A.layout(prog=layout)
