@@ -201,8 +201,16 @@ class Automaton:
             depth = G.nodes[state_key]['depth']
             if depth >= max_depth:
                 continue
-
-            actions = self.actions if all_actions else [action_policy(state)] if action_policy else [self.actions[0]]
+            
+            if all_actions:
+                actions = [a for a in self.actions if self.enabled(state, a)]
+            elif action_policy:
+                candidate = action_policy(state)
+                actions = [candidate] if self.enabled(state, candidate) else []
+            else:
+                actions = [self.actions[0]] if self.enabled(state, self.actions[0]) else []
+        
+            # actions = self.actions if all_actions else [action_policy(state)] if action_policy else [self.actions[0]]
             for action in actions:
                 successors = self.post_action(state, action, max_solutions=max_branching)
                 for succ in successors:

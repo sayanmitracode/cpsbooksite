@@ -8,7 +8,7 @@ class DijkstraASYN(Automaton):
         self.K = K
         state_components = [(f"x{i}", IntSort(), 0) for i in range(N)]
         state_template = State(state_components)
-        actions = [f"update{i}" for i in range(N)]
+        actions = [f"mov{i}" for i in range(N)]
         x_vars = [Const(f"x{i}", IntSort()) for i in range(N)]
 
         # Example initial predicate: no two adjacent nodes are equal
@@ -23,10 +23,10 @@ class DijkstraASYN(Automaton):
             return x_vars[i] != x_vars[i - 1]
 
     def transition(self, s_vars, a, s_p_vars):
-        if not a.startswith("update"):
+        if not a.startswith("mov"):
             return False
 
-        i = int(a[len("update"):])
+        i = int(a[len("mov"):])
         if not (0 <= i < self.N):
             return False
 
@@ -56,5 +56,7 @@ if __name__ == "__main__":
     init_state = A.sample_initial_state()
     trace = A.generate_single_execution(start_state=init_state,  max_len=15)
     A.print_execution(trace)
-    # G = A.reachability_tree(initial_state=init_state, max_depth=15, all_actions=True)
-    # A.plot_reachability_tree(G, title="Dijkstra Asynchronous Token Ring")
+    G = A.reachability_tree(initial_state=init_state, max_depth=10, all_actions=True)
+    A.plot_reachability_tree(G, title="Dijkstra Asynchronous Token Ring")
+    A.graphviz_reachability_tree(G, title="Dijkstra Asynchronous Token Ring", layout="dot", figsize=(10, 10))
+
