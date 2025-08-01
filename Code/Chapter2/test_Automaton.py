@@ -1,6 +1,6 @@
 import unittest
 from z3 import *
-import Incdec
+from Incdec import IncDecAutomaton, incdec_transition
 import Collatz
 from Automaton import Automaton
 from State import State
@@ -39,9 +39,25 @@ class TestStateClass(unittest.TestCase):
         self.assertNotEqual(self.s, s3)
         self.assertEqual(hash(self.s), hash(s2))
         self.assertNotEqual(hash(self.s), hash(s3))
+    
+class TestIncDecAutomaton(unittest.TestCase):
+    """Unit tests for the IncDecAutomaton class."""
+    def setUp(self):
+        self.incdec = IncDecAutomaton(
+            State([("x", IntSort(), 0)]),
+            ["inc", "dec"],
+            Const("x", IntSort()) == 0,
+            incdec_transition
+        )
 
+    def test_format_state_label(self):
+        state = State([("x", IntSort(), 5)])
+        self.assertEqual(self.incdec.format_state_label(state), "5")
 
-
+    def initialState_Sample(self):
+        """Check that sample_initial_state returns a state that is_initial."""
+        init_state = self.incdec.sample_initial_state()
+        self.assertTrue(self.incdec.is_initial(init_state))
 
 
 if __name__ == '__main__':
