@@ -40,18 +40,34 @@ class Automaton:
         else:
             raise ValueError("No satisfying initial state found.")
 
-
-    def post_one(self, state, action):
+    def enabled(self, state, action):
+        """Return True if there exists at least one successor for the given state and action."""
         if action not in self.actions:
-            raise ValueError(f"Unknown action: {action}")
+            return False
         solver = Solver()
         solver.add(state.to_z3_subst(self.state_vars))
         tr = self.transition(self.state_vars, action, self.state_vars_prime)
         solver.add(tr)
+        return solver.check() == sat
+
+    def post_one(self, state, action):
+        if action not in self.actions:
+            raise ValueError(f"Unknown action: {action}")
+
+        if not self.enabled(state, action):
+            raise ValueError(f"Action '{action}' is not enabled in state {state}")
+
+        solver = Solver()
+        solver.add(state.to_z3_subst(self.state_vars))
+        tr = self.transition(self.state_vars, action, self.state_vars_prime)
+        solver.add(tr)
+
         if solver.check() == sat:
             model = solver.model()
             vals = [model.eval(v, model_completion=True) for v in self.state_vars_prime]
             return State.from_z3(self.state_vars, vals)
+        
+        # Technically unreachable due to the enabled check above, but for safety:
         return None
 
 
@@ -98,6 +114,8 @@ class Automaton:
 
         for _ in range(max_len):
             action = action_policy(current) if action_policy else self.actions[0]
+            # Chooses only the first action if no policy is provided.
+            # CAUTION: That action[0] may not be enabled and could lead to a deadlock.
             next_state = self.post_one(current, action)
             if not next_state:
                 break
