@@ -10,7 +10,7 @@ state_template = State([("x", IntSort(), 0)])
 
 # Initial predicate
 x = Const("x", IntSort())
-init_pred = (x == 7)
+init_pred = (x == 12)
 
 actions = ["update"]
 
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     print(Collatz.state_vars) 
     print(Collatz.actions)
     print(Collatz.init_predicate)
-    s0= State([("x", IntSort(), IntVal(7))])
+    s0= State([("x", IntSort(), IntVal(12))])
     print(repr(Collatz.post_one(s0, "update")))
 
     # Single trace from default init
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     Collatz.print_execution(exec)
 
     # Multiple executions from different initial states
-    initial_values = [5, 11, 19, 27, 47]
+    initial_values = [191,193,197,199,211,223,227,229,233,239,241,251,257,263,269,271,277,281,283]
     execs = []
     labels = []
 

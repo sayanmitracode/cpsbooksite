@@ -4,7 +4,6 @@ import networkx as nx
 from State import State
 import matplotlib.pyplot as plt
 from networkx.drawing.nx_agraph import to_agraph
-import pygraphviz as pgv
 import io
 import ast  # safer than eval
 
@@ -104,6 +103,8 @@ class Automaton:
         return all_successors
 
     def generate_single_execution(self, start_state=None, action_policy=None, max_len=100):
+        """        Generate a single execution trace starting from the given state.
+        start_state: a State instance,"""
         current = start_state if start_state is not None else self.sample_initial_state()
         trace = [(None, current)]
 
@@ -124,34 +125,8 @@ class Automaton:
             trace.append((action, next_state))
             current = next_state
 
-        return trace
-        
-    # def generate_single_execution(self, start_state=None, action_policy=None, max_len=100):
-    #     if start_state is None:
-    #         solver = Solver()
-    #         solver.add(self.init_predicate)
-    #         if solver.check() != sat:
-    #             raise ValueError("No initial state satisfies the initial predicate.")
-    #         model = solver.model()
-    #         vals = [model.eval(v, model_completion=True) for v in self.state_vars]
-    #         current = State.from_z3(self.state_vars, vals)
-    #     else:
-    #         current = start_state
-
-    #     trace = [(None, current)]
-
-    #     for _ in range(max_len):
-    #         action = action_policy(current) if action_policy else self.actions[0]
-    #         # Chooses only the first action if no policy is provided.
-    #         # CAUTION: That action[0] may not be enabled and could lead to a deadlock.
-    #         next_state = self.post_one(current, action)
-    #         if not next_state:
-    #             break
-    #         trace.append((action, next_state))
-    #         current = next_state
-
-    #     return trace
-    
+        return trace       
+   
     def print_execution(self, execution):
         """
         Print the sequence of actions and states in an execution trace.
@@ -190,6 +165,12 @@ class Automaton:
         plt.show()                
 
     def reachability_tree(self, initial_state, max_depth=5, action_policy=None, all_actions=False, max_branching=100):
+        """Generate a reachability tree starting from the initial state.
+        initial_state: a State instance
+        action_policy: function that takes a state and returns an action name
+        if action_policy is None, will use the first enabled action
+        all_actions: if True, will consider all enabled actions at each state
+        max_branching: maximum number of successors to explore per action"""
         G = nx.DiGraph()
         root_key = initial_state.to_key()
         G.add_node(root_key, state=initial_state, depth=0)
@@ -223,6 +204,7 @@ class Automaton:
 
  
     def plot_reachability_tree(self, G, title="Reachability Tree", figsize=(10, 6)):
+        """Plot the reachability tree using matplotlib and networkx."""
  
         pos = nx.circular_layout(G) # nx.spring_layout(G, seed=42)
         # change this to nx.shell_layout(), nx.circular_layout(), or nx.planar_layout()
@@ -252,6 +234,7 @@ class Automaton:
         plt.show()
 
     def graphviz_reachability_tree(self, G, title="Reachability Tree", layout="dot", figsize=(10, 6)):
+        """Visualize the reachability tree using Graphviz and matplotlib."""
         A = to_agraph(G)
         for node in A.nodes():
             node_str = node.get_name()
