@@ -146,15 +146,27 @@ class Automaton:
         for i, exec in enumerate(execs):
             steps = list(range(len(exec)))
             label = labels[i] if labels else f"Trace {i+1}"
-
             if var_names:
                 for j, name in enumerate(var_names[:3]):
-                    y_vals = [s.get_values(name).as_long() for (_, s) in exec]
+                    y_vals = []
+                    for (_, s) in exec:
+                        val = s.get_values(name)
+                        if val.is_int():
+                            y_vals.append(val.as_long())
+                        else:
+                            y_vals.append(float(val.as_decimal(5).replace("?", "")))
                     style = linestyles[j % len(linestyles)]
                     plt.plot(steps, y_vals, linestyle=style, color=colors[i % len(colors)], label=f"{label}: {name}")
-            else:
-                y_vals = [s.get_values("x").as_long() for (_, s) in exec]
-                plt.plot(steps, y_vals, linestyle='-', color=colors[i % len(colors)], label=label)
+
+
+            # if var_names:
+            #     for j, name in enumerate(var_names[:3]):
+            #         y_vals = [s.get_values(name).as_long() for (_, s) in exec]
+            #         style = linestyles[j % len(linestyles)]
+            #         plt.plot(steps, y_vals, linestyle=style, color=colors[i % len(colors)], label=f"{label}: {name}")
+            # else:
+            #     y_vals = [s.get_values("x").as_long() for (_, s) in exec]
+            #     plt.plot(steps, y_vals, linestyle='-', color=colors[i % len(colors)], label=label)
 
         plt.xlabel("Step")
         plt.ylabel("State Variable Value")
