@@ -8,8 +8,8 @@ _MIT Press_, February 2021.
 # Chapters
 
 1. ### Introduction
+  * slides 2025 [pptx](Slides/2025/L1_Introduction.pptx) [pdf](Slides/2025/L1_Introduction.pdf)
   * slides 2021 [pptx](Slides/Introduction-cps21.pptx) [pdf](Slides/Introduction-cps21.pdf)
-  * slides 2019 [pptx](Slides/Introduction-cps.pptx) [pdf](Slides/Introduction-cps.pdf)
 2. ### Modeling computation
   * pre-lecture notes 2021 [note](Notes/ModelingComputationUnfilled.note) [pdf](Notes/ModelingComputationUnfilled.pdf) 
   * post-lecture notes 2021 [note](Notes/Modeling-comp-final.note) [pdf](Notes/Modeling-comp-final.pdf) 
