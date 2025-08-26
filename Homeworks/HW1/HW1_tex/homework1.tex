@@ -1,0 +1,237 @@
+\documentclass[11pt]{article}
+
+% This is a package for drawing figures
+% it is a part of standard latex 2e distribution
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{fullpage}
+
+
+\usepackage{palatino}
+\RequirePackage{ifthen}
+\usepackage{latexsym}
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{amssymb}
+\RequirePackage{xspace}
+\RequirePackage{graphics}
+\usepackage{xcolor}
+
+
+
+
+\RequirePackage{textcomp}
+\usepackage{keyval}
+%\usepackage{listings}
+\usepackage{xspace}
+\usepackage{mathrsfs,paralist, amsmath,amssymb,url,listings,mathrsfs}
+%\usepackage{pvs}
+%\usepackage{supertabular,alltt,latexsym}
+%\usepackage{multicol,multirow,epsfig}
+%\usepackage[dvips, usenames]{color}
+\usepackage{framed}
+\usepackage{lipsum}
+%\usepackage[dvipsnames]{color}
+
+% copyright notice
+
+
+\definecolor{reddish}{rgb}{1,.8,0.8}
+\definecolor{blueish}{rgb}{0.8,.8,1}
+\definecolor{greenish}{rgb}{.8,1,0.8}
+\definecolor{yellowish}{rgb}{1,1,.20}
+
+
+\usepackage[pdftex]{hyperref}
+\hypersetup{
+  pdftitle={Lecture notes for Modeling and Verification of Real-time and Hybrid Systems},
+  pdfauthor={Sayan Mitra},
+  colorlinks=true,
+  citecolor={blue},
+  linkcolor = {blue},
+  pagecolor={blue},
+  backref={true},
+  bookmarks=true,
+  bookmarksopen=false,
+  bookmarksnumbered=true
+}
+
+%\newcommand{\remove}[1]{}
+\newcommand{\nicole}[1]{\textcolor{red}{#1}}
+
+\input{prelude1}
+
+\DeclareRobustCommand{\BibTeX}{%
+  {\normalfont B\kern-.05em{\scshape i\kern-.025em b}\kern-.08em \TeX}%
+}
+
+\newcommand{\handout}[6]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      \hbox to 5.78in { {\bf ECE/CS 584: Embedded and cyberphysical system  verification } \hfill #2 }
+      \vspace{4mm}
+      \hbox to 5.78in { {\Large \hfill #5  \hfill} }
+      \vspace{2mm}
+       \hbox to 5.78in { {\Large \hfill #6  \hfill} }
+      \vspace{2mm}
+      \hbox to 5.78in { {\em #3 \hfill #4} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\smallheader}[5]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      \hbox to 5.78in { {\bf ECE/CS 584: Embedded and cyberphysical system  verification  } \hfill #2 }
+      \vspace{2mm}
+      \hbox to 5.78in { {\em #3 \hfill #4} }
+      \vspace{2mm}
+      \hbox to 5.78in { {\em \hfill #5} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\lecture}[4]{\handout{#1}{#2}{#3}{Scribe: #4}{Lecture #1}}
+
+\newcommand{\homework}[2]{\smallheader{#1}{Fall 2019}{Homework #1}\vspace{5mm} 
+	{#2}
+	}
+	
+\newcommand{\solution}[2]{\smallheader{#1}{Fall 2017}{Solutions for Homework #1}{#2}}
+
+
+\newcommand{\interestingfact}[1]{
+	\noindent
+	\begin{center}
+	\colorbox{yellowish}{
+	\parbox{11.5cm}{{\bf Factoid.} #1}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+%\definecolor{MyGray}{rgb}{0.96,0.97,0.98}
+\makeatletter\newenvironment{color1box}{%
+   \begin{lrbox}{\@tempboxa}\begin{minipage}{\columnwidth}}{\end{minipage}\end{lrbox}%
+   \colorbox{reddish}{\usebox{\@tempboxa}}
+}\makeatother
+
+
+\makeatletter\newenvironment{color3box}{%
+   \begin{lrbox}{\@tempboxa}\begin{minipage}{\columnwidth}}{\end{minipage}\end{lrbox}%
+   \colorbox{blueish}{\usebox{\@tempboxa}}
+}\makeatother
+
+% 1-inch margins, from fullpage.sty by H.Partl, Version 2, Dec. 15, 1988.
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 8.9in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+%\renewcommand{\baselinestretch}{1.25}
+
+\begin{document}
+
+
+\smallheader{1 on Modeling computation and invariance--- Due on September $12^{th}$}{Fall 2025}{Your name, netid}{Homework 1: Modeling computation and invariance}{Due September 12th 11:59pm}
+
+\begin{quote}
+	{\em Upload your writeup (.pdf) and code (.py) to Gradescope. In the writeup, put each answer on a separate page and label it with the correct number. Ensure your code runs on designated environment; if it fails on our side, you will have to provide a face-to-face code explanation during TA office hours.
+    %Typeset your solutions using \LaTeX\, zip your writeup (.pdf) and code (.py) in a single file called \texttt{nedid-584-F25.zip} and upload this file through Canvass++.
+    }
+\end{quote}
+
+\paragraph{Problem 1. Bidirectional array (20 points, Modeling+Execution+Inductive Invariance Theorem).}
+Model the following token-based mutual exclusion algorithm that works on a {\em bidirectional array\/}.  There are $N$ processes $\{0,\ldots, N-1\}$ in an array. Each process $i$, has a single variable $s[i]$ that takes values in the set $\{0,1,2,3\}$ independent of the size of the array. The two processes $0$ and $N-1$ behave differently from the rest, they can take two values each $s[0]$ can take values $\{1,3\}$ and $s[N-1]$ can take values $\{0,2\}$. Let $\mathit{Nbrs}(i)$ be the set of neighboring  processes for process $i$.  
+\begin{enumerate}
+	\item Program for processes $i$, $i=0$ or $i = N-1$: \\ 
+	if $\exists \ j \in \mathit{Nbrs}(i)$:$s[j] = s[i] + 1 \mod 4$ then $s[i] = s[i] + 2 \mod 4$
+	\item Program for processes $i$, $0<i<N-1$: \\ 
+	if $\exists \ j \in \mathit{Nbrs}(i)$:$s[j] = s[i] + 1 \mod 4$ then $s[i] = s[i] + 1 \mod 4$
+\end{enumerate} 
+In this protocol, process $i$ {\em has token\/} iff
+\[
+\exists j \in \mathit{Nbrs}(i):s[j] = s[i] + 1 \mod 4.
+\] 
+
+\begin{enumerate}[(a)]
+\item Write the model of the bidirectional array system with $N$ processes using the language we saw in class. 
+\item Write an execution of the algorithm that starts from a state with a single token. Mark the process with the token (a special color / bold font).
+\item Write an execution (of length at least 6) that starts from a state with multiple tokens.
+\item Prove the invariant ``system has a single token'' using the inductive invariance theorem. 
+\end{enumerate}
+
+
+\paragraph{Problem 2. LCR Leader election (30 points, Modeling+Execution).}
+In this problem, you will create a model of a leader election algorithm in a unidirectional ring~\cite{lynch1996a}. Here is the informal description of the protocol:
+
+Each process sends its unique identifier to its successor around the ring. When a process receives an incoming identifier, it compares that identifier to its own. If the incoming identifier is greater than its own, it keeps passing the identifier; if it is less than its own, it discards the incoming identifier and sends out its own identifier; if it is equal to its own the process declares itself as the leader. 
+
+\begin{enumerate}[(a)]
+\item Write the model of the system with $n$ processes in the ring using the language we saw in class. To get you started, the set of variables is: 
+\begin{itemize}
+\item $\mathit{send}$: The identifier to send or {\em null\/},
+\item $\mathit{status}$: Takes values in $\{ \mathit{unknown},\mathit{leader}\}$ to indicate that the leader has been elected or not. 
+\end{itemize}
+
+\item Write an execution of the system ($N\geq 4$) in which status of at least one process is eventually set to $\mathit{leader\/}$. 
+
+\item Is the following statement true: "Suppose the unidirectional ring have N process. Then there have to be at least 1 leader after N+1 transitions."?  If yes, prove it; if no, provide a counterexample.
+
+\item Is the following statement true: "The process with the largest number in the unidirectional ring will be the leader."?  If yes, prove it; if no, provide a counterexample.
+\end{enumerate}
+
+\paragraph{Problem 3. Impossibility of election (15 points, Model + Inductive Invariance Theorem).}
+A {\em symmetric function\/} $f:S^k \rightarrow S$ has the property that for all $s_1,s_2\in S^k$, if $s_1$ is a permutation of $s_2$ then $f(s_1) = f(s_2)$. That is, for $k=3$, $f(\langle 1,2,3 \rangle) = f(\langle 2,3,1\rangle) = f(\langle 3,1,2\rangle)$, etc.
+
+Consider a synchronous algorithm $\auto{SymGk}$ running on a graph $G$ with {\em indegree\/} $k$. That is, each process $P_j$ reads the states of exactly $k$ other processes. In this algorithm. $\auto{SymGk}$, every node updates its state $x_i$ according to some symmetric function $f:S^k \rightarrow S$, that is, 
+\[
+x[i] := f(\langle x[j] \ | \ (j,i) \in G\rangle)
+\]
+Show that it is impossible for $\auto{SymGk}$  to elect a leader if initially every process has the same value of $x[i]$. {\em [Hint: State an invariant and prove it by induction on rounds.]}
+
+
+
+
+
+
+\paragraph{Problem 4. Dijkstra invariance with Z3 (35 points, Token Ring).} 
+Use the Z3 SMT solver to encode and check that for the Dijkstra's token ring mutual exclusion algorithm ($\auto{DijkstraTR}$ of Chapter~2) the predicate $\phi_{\mathit{legal}}$ is an inductive invariant. 
+
+First, install Z3 on your computer. This is a quick process: on macOS, running \texttt{pip install z3-solver } (remark: not z3) usually completes in less than a minute. For Windows and Linux, you can download it directly from \href{https://github.com/Z3Prover/z3}{https://github.com/Z3Prover/z3}. Ample online resources are available to help with installation issues. \textbf{Please ensure that your environment matches the test versions used on our side: \texttt{python: 3.10} and \texttt{z3: 4.8-4.15}}. 
+
+Next, download the file \texttt{DijkstraTRind.py} provided for this homework and read it carefully. The program contains several functions, some of which you will need to complete. The accompanying documentation, lecture slides, and the discussions in Chapters 2 and 7 of the book should provide sufficient guidance. Additional notes are provided below.
+ 
+
+\begin{itemize}
+\item \texttt{has\_token(x\_list, j)}: Generates a Z3 Boolean expression (predicate) that represents whether process P\_j holds the token. Here  \texttt{x\_list} is a list of Z3 variables, for example, \texttt{[x[0], x[1], x[2], x[3]]}, and  \texttt{j} is the index of process P\_j.
+\item \texttt{legal\_config(x\_list)}: Generates a Z3 Boolean expression that represents whether the system is in a legal configuration. This is the implementation of $\phi_{\mathit{legal}}$. This function is given to and {\bf you do not have to change it\/}.
+%
+\item \texttt{transition\_relation(old\_x\_list, new\_x\_list)}: Generates a Z3 Boolean expression representing transition from \texttt{old\_x\_list} to \texttt{new\_x\_list}.
+\item \texttt{prove(conjecture)}: Checks whether the Boolean predicate \texttt{conjecture} is valid using the Z3 solver to check the {\em unsatisfiability\/} of the negation of \texttt{conjecture}. {\bf You do not have to change this.\/}
+\end{itemize}
+
+Run your program with \texttt{python3 DijkstraTRind.py}. If the functions are written correctly, then validity of the base case and the induction case imply (by the induction invariance Theorem) that \texttt{legal\_config} is indeed an invariant.
+
+\paragraph{Problem 5. Project activity.} 
+Spend a few hours to think, research, and write up a page answering the questions in the \href{https://mitras.ece.illinois.edu/ECE584/project.html}{Project Jumpstart Page.} Use \LaTeX\ for typesetting and \BibTeX for bibliography and references. Collect  papers and references to models and tools you find in a bibliography (.bib) file. Although this problem is not graded, you are strongly recommended to turn this in. 
+
+\paragraph{Epilogue.} 
+ Verifying the self-stabilization property of distributed algorithm's like Dijkstra's token ring algorithm and the other examples in this homework is an interesting problem. Several other examples are given in Chapter 17 of~\cite{Ghosh:2014:DSA}. Multi-agent robotic systems, e.g., for formation flight, flocking, and coverage, also possess self-stabilization properties, although they are not explicitly spoken of. Another related interesting problem is to {\em synthesize\/} algorithms that are self-stabilizing, given some constraints on communication and variables. Self-stabilization is not an invariant property and requires a different proof technique with {\em ranking functions\/}---something we will encounter later in Chapter~10.
+
+\bibliography{sayan1}
+\bibliographystyle{plain}
+\end{document}
