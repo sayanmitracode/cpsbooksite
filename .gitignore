@@ -3,4 +3,5 @@ _site
 .jekyll-metadata
 **/.DS_Store
 **/~*.pptx
-
+*.pyc
+__pycache__/
