@@ -11,10 +11,9 @@ _MIT Press_, February 2021.
   * slides 2025 [pptx](Slides/2025/L1_Introduction.pptx) [pdf](Slides/2025/L1_Introduction.pdf)
   * slides 2021 [pptx](Slides/Introduction-cps21.pptx) [pdf](Slides/Introduction-cps21.pdf)
 2. ### Modeling computation
+  * slides 2025 [pptx](Slides/2025/L2_AutomataReach.pptx) [pdf](Slides/2025/L2_AutomataReach.pdf)
   * pre-lecture notes 2021 [note](Notes/ModelingComputationUnfilled.note) [pdf](Notes/ModelingComputationUnfilled.pdf) 
   * post-lecture notes 2021 [note](Notes/Modeling-comp-final.note) [pdf](Notes/Modeling-comp-final.pdf) 
-  * slides 2019 [pptx](Slides/ModelingComputation.pptx) [pdf](Slides/ModelingComputation.pdf)
-  * code [ipynb](https://gitlab.engr.illinois.edu/mitras/cps_bookcode/blob/master/Chapter%202/Notebook/Chapter2.ipynb)
 3. ### Modeling physics
   * slides [pptx](Slides/ModelingPhysics.pptx) [pdf](Slides/ModelingPhysics.pdf)
   * pre-lecture notes 2021 [note](Notes/Pre-lecture-dynsys.note) [pdf](Notes/Pre-lecture-dynsys.pdf) 
