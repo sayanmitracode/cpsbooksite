@@ -51,7 +51,7 @@ class DijkstraASYN(Automaton):
 
 
 if __name__ == "__main__":
-    A = DijkstraASYN(N=4, K=5)
+    A = DijkstraASYN(N=3, K=4)
 
     init_state = A.sample_initial_state()
     trace = A.generate_single_execution(start_state=init_state,  max_len=15)
