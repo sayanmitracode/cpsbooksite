@@ -55,8 +55,7 @@ if __name__ == "__main__":
 
     init_state = A.sample_initial_state()
     trace = A.generate_single_execution(start_state=init_state,  max_len=15)
-    #A.print_execution(trace)
+    A.print_execution(trace)
     G = A.reachability_tree(initial_state=init_state, max_depth=10, all_actions=True)
     A.plot_reachability_tree(G, title="Dijkstra Asynchronous Token Ring")
-    #A.graphviz_reachability_tree(G, title="Dijkstra Asynchronous Token Ring", layout="dot", figsize=(10, 10))
-
+    
