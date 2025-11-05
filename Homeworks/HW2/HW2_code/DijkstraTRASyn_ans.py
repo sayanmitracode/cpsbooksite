@@ -51,11 +51,11 @@ class DijkstraASYN(Automaton):
 
 
 if __name__ == "__main__":
-    A = DijkstraASYN(N=3, K=4)
+    A = DijkstraASYN(N=3, K=5)
 
     init_state = A.sample_initial_state()
-    trace = A.generate_single_execution(start_state=init_state,  max_len=15)
+    trace = A.generate_single_execution(start_state=init_state,  max_len=20)
     A.print_execution(trace)
-    G = A.reachability_tree(initial_state=init_state, max_depth=10, all_actions=True)
+    G = A.reachability_tree(initial_state=init_state, max_depth=20, all_actions=True)
     A.plot_reachability_tree(G, title="Dijkstra Asynchronous Token Ring")
     

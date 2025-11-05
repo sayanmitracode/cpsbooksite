@@ -43,10 +43,10 @@ class DijkstraSTR(Automaton):
 
 
 if __name__ == "__main__":
-    A = DijkstraSTR(N=3, K=4)
+    A = DijkstraSTR(N=3, K=5)
 
     init_state = A.sample_initial_state()
-    trace = A.generate_single_execution(start_state=init_state, max_len=15)
+    trace = A.generate_single_execution(start_state=init_state, max_len=20)
     A.print_execution(trace)
-    G = A.reachability_tree(initial_state=init_state, max_depth=15)
+    G = A.reachability_tree(initial_state=init_state, max_depth=20)
     A.plot_reachability_tree(G, title="Dijkstra Synchronous Token Ring")
